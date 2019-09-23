@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 export const FETCHING_EVENTS_START = "FETCHING_EVENTS_START";
@@ -12,3 +12,39 @@ export const getEvents = () => dispatch => {
         .then(res => console.log(res))
         .catch(err => console.log(err.response))
 }
+
+//Posting Actions
+export const ADD_EVENT = "ADD_EVENT";
+export const DELETE_EVENT = "DELETE_EVENT";
+
+export const addEvent = ({ id, name, host_id, host_name, date, time, location}) => {
+    return (dispatch) => {
+        return axiosWithAuth().post("/events", {id, name, host_id, host_name, date, time, location})
+            .then(res => {
+                dispatch(createEventSuccess(res.data))
+            })
+            .catch(err => console.log(err.response));
+    };
+};
+
+export const createEventSuccess = (data) => {
+    return {
+        type: ADD_EVENT,
+        payload: {
+            id: data.id,
+            name: data.name,
+            host_id: data.host_id,
+            host_name: data.host_name,
+            date: data.date,
+            time: data.time,
+            location: data.location
+        }
+    }
+};
+
+export const deleteEvent = id => ({
+    type: DELETE_EVENT,
+    payload: {
+        id
+    }
+});
