@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './utils/PrivateRoute';
+import Events from './components/Events';
 
 import './App.css';
 
@@ -10,6 +11,7 @@ function App() {
     <Router>
       <div className = "App">
         <Switch>
+          <PrivateRoute path = "/events" component = {Events} />
           <Route path = "/login" component = {Login} />
           <PrivateRoute exact path = "/accounts" />
         </Switch>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { Form } from 'semantic-ui-react';
 
@@ -15,7 +15,7 @@ const Login = props => {
         axiosWithAuth().post('/accounts/login', login)
             .then(res => {
                 localStorage.setItem('userToken', res.data.payload);
-                props.history.push('/')
+                props.history.push('/accounts')
             })
             .catch(err => console.log(err.response));
     }
