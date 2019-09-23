@@ -27,9 +27,9 @@ export const eventReducer = (state = initialState, action) => {
                 events: [
                     ...state.events,
                     {
-                        id: action.payload.id,
+                        // id: action.payload.id,
                         name: action.payload.name,
-                        host_id: action.payload.host_id,
+                        // host_id: action.payload.host_id,
                         host_name: action.payload.host_name,
                         date: action.payload.date,
                         time: action.payload.time,
@@ -52,10 +52,11 @@ export const eventReducer = (state = initialState, action) => {
             return {...state,
             events:[
                 ...state.events,
-                {id: action.payload.id,
+                {
+                // id: action.payload.id,
                 name: action.payload.name,
-                host_id: action.payload.host_id,
-                host_name: action.payload.host_name,
+                // host_id: action.payload.host_id,
+                // host_name: action.payload.host_name,
                 date: action.payload.date,
                 time: action.payload.time,
                 location: action.payload.location}

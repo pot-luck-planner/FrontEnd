@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { Form } from 'semantic-ui-react';
+import axios from 'axios';
 
 
 const Login = props => {
@@ -12,10 +13,11 @@ const Login = props => {
 
     const logUser = e => {
         e.preventDefault();
-        axiosWithAuth().post('/accounts/login', login)
+        axios.post('https://potluck-planner-v2.herokuapp.com/accounts/login', login)
             .then(res => {
-                localStorage.setItem('userToken', res.data.payload);
-                props.history.push('/accounts')
+                console.log(res)
+                localStorage.setItem('token', res.data.token);
+                props.history.push('/events')
             })
             .catch(err => console.log(err.response));
     }

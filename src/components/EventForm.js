@@ -1,13 +1,13 @@
 import React from 'react';
-import { createEvent } from '../actions';
+import { addEvent } from '../actions';
 import { connect } from 'react-redux';
 
 class EventForm extends React.Component {
     state = {
-        id: '',
+        // id: '',
         name: '',
-        host_id: '',
-        host_name: '',
+        // host_id: '',
+        // host_name: '',
         date: '',
         time: '',
         location: '',
@@ -20,7 +20,8 @@ class EventForm extends React.Component {
     };
 
     handleSubmit = e => {
-        if (this.state.id.trim() && this.state.name.trim() && this.state.host_id.trim() && this.state.host_name.trim() && this.state.date.trim() && this.state.time.trim() && this.state.location.trim()) {
+        e.preventDefault();
+        if (this.state.name.trim() && this.state.date.trim() && this.state.time.trim() && this.state.location.trim()) {
             this.props.onAddEvent(this.state);
             this.handleReset();
         };
@@ -28,10 +29,8 @@ class EventForm extends React.Component {
 
     handleReset = () => {
         this.setState({
-            id: '',
+ 
             name: '',
-            host_id: '',
-            host_name: '',
             date: '',
             time: '',
             location: ''
@@ -52,26 +51,26 @@ class EventForm extends React.Component {
                             value = { this.state.name }
                         />
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <input
                             type="text"
                             placeholder="Host ID"
                             className = "form-control"
-                            name = "host-id"
+                            name = "host_id"
                             onChange = { this.handleInputChange }
                             value = { this.state.host_id }
                         />
-                    </div>
-                    <div className="form-group">
+                    </div> */}
+                    {/* <div className="form-group">
                         <input
                             type="text"
                             placeholder="Host Name"
                             className = "form-control"
-                            name = "host-name"
+                            name = "host_name"
                             onChange = { this.handleInputChange }
-                            value = { this.state.host_name }
-                        />
-                    </div>
+                            value = { this.state.host_name } */}
+                        {/* />
+                    </div> */}
                     <div className="form-group">
                         <input
                             type="text"
@@ -102,7 +101,7 @@ class EventForm extends React.Component {
                             value = { this.state.location }
                         />
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <input
                             type="text"
                             placeholder="Event ID"
@@ -111,7 +110,7 @@ class EventForm extends React.Component {
                             onChange = { this.handleInputChange }
                             value = { this.state.id }
                         />
-                    </div>
+                    </div> */}
                     <div className="form-group">
                         <button type="submit" className="btn btun-primary">Add Event</button>
                         <button type="button" className="btn btn-warning" onClick={ this.handleReset }>Reset Fields</button>
@@ -122,7 +121,7 @@ class EventForm extends React.Component {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapdispatchToProps = dispatch => {
     return {
         onAddEvent: event => {
             dispatch(addEvent(event));
@@ -132,5 +131,5 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
     null,
-    mapDispatchToProps
+    mapdispatchToProps
 )(EventForm);
