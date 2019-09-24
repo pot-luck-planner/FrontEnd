@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
@@ -18,6 +19,9 @@ const Event = props => {
                     <Card.Description>Hosted by: {props.host_name}</Card.Description>
                 </Card.Content>
             </Card>
+            <Link to = {`/updateevent/${props.id}`}>
+                <Button color='green'>Update Event</Button>
+            </Link>
             
             
 

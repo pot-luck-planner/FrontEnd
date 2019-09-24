@@ -20,7 +20,7 @@ const Events = ({ getEvents, isFetching, ...props }) => {
                 <Event  
                     name = {item.name}
                     key = {item.id} 
-                    // id = {item.id} 
+                    id = {item.id} 
                     // host_id = {item.host_id}
                     host_name = {item.host_name}
                     date = {item.date}
@@ -37,7 +37,7 @@ const mapStateToProps = state => {
         events: state.events,
         isFetching: state.isFetching,
         error: state.error,
-        // id: state.id,
+        id: state.id,
         name: state.name,
         // host_id: state.host_id,
         host_name: state.host_name,

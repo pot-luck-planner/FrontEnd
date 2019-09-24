@@ -5,6 +5,7 @@ import Login from './components/Login';
 import PrivateRoute from './utils/PrivateRoute';
 import Events from './components/Events';
 import EventForm from './components/EventForm';
+import EventUpdate from './components/EventUpdate';
 
 
 import './App.css';
@@ -19,8 +20,12 @@ function App() {
           <Route path = "/login" component = {Login} />
           <PrivateRoute exact path = "/accounts" />
           <PrivateRoute path = "/addevent" component = {EventForm} />
-          <{PrivateRoute exact path = "/accounts" />
-          <{PrivateRoute path = "/addevent" component = {EventForm} />
+          <PrivateRoute exact path = "/accounts" />
+          <PrivateRoute path = "/addevent" component = {EventForm} />
+          <PrivateRoute path = "/updateevent/:id" 
+                        render={props => {
+                          return <EventUpdate {...props} />
+                        }} />
           <RegForm />
 
         </Switch>
