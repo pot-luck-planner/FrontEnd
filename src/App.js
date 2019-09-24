@@ -17,9 +17,12 @@ function App() {
         <Switch>
           <PrivateRoute path = "/events" component = {Events} />
           <Route path = "/login" component = {Login} />
+          <PrivateRoute exact path = "/accounts" />
+          <PrivateRoute path = "/addevent" component = {EventForm} />
           <{PrivateRoute exact path = "/accounts" />
           <{PrivateRoute path = "/addevent" component = {EventForm} />
           <RegForm />
+
         </Switch>
 
       </div>
