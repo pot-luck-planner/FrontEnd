@@ -5,7 +5,7 @@ import Login from './components/Login';
 import PrivateRoute from './utils/PrivateRoute';
 import Events from './components/Events';
 import EventForm from './components/EventForm';
-import AttendieCard from './components/Attendie/AttendieCard'
+import SideBar from './components/NavBar/SideBar';
 
 
 import './App.css';
@@ -15,7 +15,7 @@ function App() {
     <Router>
       <div className = "App">
         <h1>Pot Luck Planner</h1>
-        <AttendieCard />
+        <SideBar />
 
       </div>
 
