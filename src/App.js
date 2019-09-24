@@ -6,9 +6,8 @@ import PrivateRoute from './utils/PrivateRoute';
 import Events from './components/Events';
 import EventForm from './components/EventForm';
 import EventUpdate from './components/EventUpdate';
-
-
 import './App.css';
+
 
 function App() {
   return (
@@ -22,10 +21,7 @@ function App() {
           <PrivateRoute path = "/addevent" component = {EventForm} />
           <PrivateRoute exact path = "/accounts" />
           <PrivateRoute path = "/addevent" component = {EventForm} />
-          <PrivateRoute path = "/updateevent/:id" 
-                        render={props => {
-                          return <EventUpdate {...props} />
-                        }} />
+          <PrivateRoute path = "/updateevent/:id" component = {EventUpdate} />
           <RegForm />
 
         </Switch>

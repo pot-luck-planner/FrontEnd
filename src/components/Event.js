@@ -9,6 +9,7 @@ width: 40%
 `;
 
 const Event = props => {
+    console.log("Event Data", props)
 
     return (
         <EventDiv>
@@ -19,7 +20,16 @@ const Event = props => {
                     <Card.Description>Hosted by: {props.host_name}</Card.Description>
                 </Card.Content>
             </Card>
-            <Link to = {`/updateevent/${props.id}`}>
+            <Link to = {{
+                pathname: `/updateevent/${props.id}`,
+                props: {
+                    name: props.name,
+                    date: props.date,
+                    location: props.location,
+                    id: props.id,
+                    time: props.time
+                }
+            }}>
                 <Button color='green'>Update Event</Button>
             </Link>
             

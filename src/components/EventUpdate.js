@@ -1,51 +1,52 @@
 import React, { useState, useEffect } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 import { RegBase, Form, RegLgd, Label, Input, RegBorder, RegBtn} from './RegForm';
 import { getEvent, updateEvent } from '../actions';
+import { connect } from 'react-redux';
 
 const EventUpdate = props => {
-    const [newEvent, setEvent] = useState({
-        id:"",
+    console.log("EventUpdate", props);
+    
+    
+    const [event, setEvent] = useState({
+        id: props.id,
         name:"",
         date:"",
         time:"",
         location:""
     });
 
-    
-    let id = props.match.params.id
 
     useEffect(() => {
-       getEvent(id).then(res => {
-           setEvent({ ...res.data})
-       })
-    },[ id])
+        
+        let id = props
+        props.onGetEvent(event)
+    },[getEvent])
 
     const handleChange = e => {
         setEvent({
-            ...newEvent,
+            ...event,
             [e.target.name]: e.target.value
         });
     };
 
     const handleSubmit = e => {
         e.preventDefault();
-        updateEvent( id, {
-            name: newEvent.name,
-            date: newEvent.date,
-            time: newEvent.time,
-            location: newEvent.location
-        });
-        setEvent({
-            name: "",
-            date: "",
-            time: "",
-            location: "",
-        });
-        props.history.push('/events')
+        if (
+            
+            event.name != "" &&
+            event.date != "" &&
+            event.time != "" &&
+            event.location != ""
+        ) {
 
-        
+            props.onUpdateEvent(event);
+
+        }
     };
+
+    
 
     return (
         <RegBase className='RegBase'>
@@ -57,28 +58,28 @@ const EventUpdate = props => {
                 <Label  htmlFor='name'>Event Name:<br />
                     <Input
                     onChange={handleChange}
-                    value={newEvent.name}
+                    value={event.name}
                     name='name'
                     placeholder='Event Name' /><br />
                 </Label>
                 <Label  htmlFor='date'>Event Date:<br />
                     <Input
                     onChange={handleChange}
-                    value={newEvent.date}
+                    value={event.date}
                     name='date'
                     placeholder='Event date' /><br />
                 </Label>
                 <Label  htmlFor='time'>Event Time:<br />
                     <Input
                     onChange={handleChange}
-                    value={newEvent.time}
+                    value={event.time}
                     name='time'
                     placeholder='Event Time' /><br />
                 </Label>
                 <Label  htmlFor='location'>Event Location:<br />
                     <Input
                     onChange={handleChange}
-                    value={newEvent.location}
+                    value={event.location}
                     name='location'
                     placeholder='Event Location' /><br />
                 </Label>
@@ -90,5 +91,21 @@ const EventUpdate = props => {
     )
 }
 
-export default EventUpdate
+const mapdispatchtoProps = dispatch => {
+    return {
+        onUpdateEvent: event => {
+            dispatch(updateEvent(event));
+        },
+        onGetEvent: id => {
+            dispatch(getEvent(id))
+        }
+    };
+    
+};
+
+
+export default connect(
+    null,
+    mapdispatchtoProps
+)(EventUpdate);
 

@@ -23,13 +23,13 @@ export const FETCHING_EVENT_START = "FETCHING_EVENT_START";
 export const FETCHING_EVENT_SUCCESS = "FETCHING_EVENT_SUCCESS";
 export const FETCHING_EVENT_FAILURE = "FETCHING_EVENT_FAILURE";
 
-export const getEvent = (dispatch, id) => {
+export const getEvent = (id) => dispatch => {
     dispatch({ type: FETCHING_EVENT_START });
     return axiosWithAuth()
     .get(`/events/${id}`)
     .then(res => {
         dispatch({ type: FETCHING_EVENT_SUCCESS, payload: res.data});
-        return res
+        console.log("getEvent", res.data)
     })
 
     .catch(err => {
@@ -56,7 +56,7 @@ export const addEventSuccess = (data) => {
     return {
         type: ADD_EVENT,
         payload: {
-            // id: data.id,
+            id: data.id,
             name: data.name,
             // host_id: data.host_id,
             // host_name: data.host_name,
