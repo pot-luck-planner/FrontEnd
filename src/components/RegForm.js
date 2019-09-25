@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
-const RegBase = styled.div`
+export const RegBase = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +10,7 @@ const RegBase = styled.div`
     height: 100%;
     background-color: #D9580D;
 `;
-const Form = styled.form`
+export const Form = styled.form`
     background-color: #F0F2F2;
     align-items: center;
     text-align: left;
@@ -18,24 +19,24 @@ const Form = styled.form`
     margin-bottom: 2rem;
     border-radius: 5px;
 `;
-const RegLgd = styled.legend`
+export const RegLgd = styled.legend`
     font-size: 1.5rem;
 `;
-const Label = styled.label`
+export const Label = styled.label`
     display: inline;
     font-size: 1rem;
     padding: 0 .5rem;
 `;
-const Input = styled.input`
+export const Input = styled.input`
     display: inline;
     margin-bottom: 1rem;
     font-size: 1rem;
 `;
-const RegBorder = styled.fieldset`
+export const RegBorder = styled.fieldset`
     border-radius: 5px;
     padding: 1rem 3rem;
 `;
-const RegBtn = styled.button`
+export const RegBtn = styled.button`
     width: 10rem;
     height: 3rem;
     background-color: #30BF45;
@@ -49,33 +50,57 @@ const RegBtn = styled.button`
     }
 `;
 
-function RegForm() {
+function RegForm(props) {
+    const [regUser, setRegUser] = useState({firstname:"", lastname:"", username:"", password:""});
+
+    const updateRegister = e =>{
+        setRegUser({ ...regUser, [e.target.name]: e.target.value});
+    }
+
+    const addUser = e => {
+        e.preventDefault();
+        axios.post('https://potluck-planner-v2.herokuapp.com/accounts/register', regUser)
+            .then(res => {
+                console.log(res)
+                localStorage.setItem('token', res.data.token);
+                props.history.push('/accounts/events')
+            })
+            .catch(err => console.log(err.response));
+    }
+    
+
+
     return (
+        <div>
         <RegBase className='RegBase'>
-            <Form className='RegForm'>
+            <Form 
+                className='RegForm'
+                onSubmit={addUser}>
             <RegBorder>
                 <RegLgd>Registration</RegLgd>
-                <Label htmlFor='fName'>First Name<br />
-                    <Input type='text' name='fName' id='fName' 
+                <Label htmlFor='firstname'>First Name<br />
+                    <Input type='text' name='firstname' id='firstname' value={regUser.firstname} onChange={updateRegister}
                     placeholder='First Name'/><br />
                 </Label>
-                <Label htmlFor='lName'>Last Name<br />
-                    <Input type='text' name='lName' id='lName' 
-                    placeholder='Last Name'/><br />
+                <Label htmlFor='lastname'>Last Name<br />
+                    <Input type='text' name='lastname' id='lastname' 
+                    placeholder='Last Name' value={regUser.lastname} onChange={updateRegister}/><br />
                 </Label>
-                <Label htmlFor='user'>User<br />
-                    <Input type='text' name='user' id='user' 
-                    placeholder='User Name'/><br />
+                <Label htmlFor='username'>User<br />
+                    <Input type='text' name='username' id='username' 
+                    placeholder='User Name' value={regUser.username} onChange={updateRegister}/><br />
                 </Label>
-                <Label htmlFor='passwrd'>Password<br />
-                    <Input type='password' name='passwrd' id='passwrd' 
-                    placeholder='Account Password'/><br />
+                <Label htmlFor='password'>Password<br />
+                    <Input type='password' name='password' id='password' 
+                    placeholder='Account Password' value={regUser.password} onChange={updateRegister}/><br />
                 </Label>
                 <br/>
                 <RegBtn>Submit</RegBtn>
             </RegBorder>
             </Form>
         </RegBase>
+        </div>
+
     );
 }
 export default RegForm
