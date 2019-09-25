@@ -2,6 +2,9 @@ import {
     FETCHING_EVENTS_START,
     FETCHING_EVENTS_SUCCESS,
     FETCHING_EVENTS_FAILURE,
+    FETCHING_INVITES_START,
+    FETCHING_INVITES_SUCCESS,
+    FETCHING_INVITES_FAILURE,
     ADD_EVENT,
     DELETING_EVENT,
     DELETED_EVENT,
@@ -18,6 +21,7 @@ import {
 
 export const initialState = {
     events: [],
+    invites: [],
     isFetching: false,
     error: ""
 };
@@ -57,6 +61,45 @@ export const eventReducer = (state = initialState, action) => {
                 isFetching: false,
                 error: "Could not fetch events"
             }
+
+        case FETCHING_INVITES_START:
+            return {
+                ...state,
+                isFetching: true,
+                error:""
+            };
+
+        case FETCHING_INVITES_SUCCESS:
+            console.log("Action Payload", action.payload)
+            return {
+                ...state,
+                invites: [
+                    ...state.invites,
+                    {
+                        id: action.payload.event_id,
+                        name: action.payload.name,
+                        host_id: action.payload.host_id,
+                        host: action.payload.host,
+                        account_id: action.payload.account_id,
+                        username: action.payload.username,
+                        firstname: action.payload.firstname,
+                        food: action.payload.food,
+                        notes: action.payload.notes,
+                        rsvp: action.payload.rsvp
+                        
+                    }
+                ],
+                invites: action.payload,
+                isFetching: false,
+                error:""
+            }
+
+        case FETCHING_INVITES_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: "Could not get your invites"
+            };
         
         case ADD_EVENT:
             return {...state,

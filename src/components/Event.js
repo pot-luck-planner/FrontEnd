@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 
 
 
-const EventDiv = styled.div`
-width: 40%;
+export const EventDiv = styled.div`
+width: 100%;
 align-items: center;
 padding: 2rem;
 margin-top: 2rem;

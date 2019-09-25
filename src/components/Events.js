@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { getEvents } from '../actions';
 import Event from './Event';
 import styled from 'styled-components';
+import { RegLgd } from './RegForm';
 
-const EventListBase = styled.div`
+export const EventListBase = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -25,7 +26,7 @@ const Events = ({ getEvents, isFetching, ...props }) => {
     console.log("Event List", props.events)
     return (
         <EventListBase>
-            <h1>List of Your Hosted Events:</h1>
+            <RegLgd>List of Your Hosted Events:</RegLgd>
             {props.events.map(item => (
                 <Event  
                     name = {item.name}

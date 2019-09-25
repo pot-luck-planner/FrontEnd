@@ -9,7 +9,7 @@ import SideBar from './components/NavBar/SideBar';
 import ItemCard from './components/Item/ItemCard';
 import AttendieCard from './components/Attendie/AttendieCard';
 import EventUpdate from './components/EventUpdate';
-// import Dashboard from './components/Dashboard';
+import Invites from './components/Invites';
 import Dashboard from './components/Dashboard';
 
 
@@ -30,6 +30,10 @@ function App() {
           path = "/events"
           render ={(props) =>
           <Events {...props} /> }  />
+          <PrivateRoute
+          path = "/invites"
+          render={(props) => 
+          <Invites {...props} />} />
           <Route path = "/login" component = {Login} />
           <PrivateRoute exact path = "/account/"
                         render={(props) => 

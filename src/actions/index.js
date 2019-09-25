@@ -20,15 +20,30 @@ export const getEvents = () => dispatch => {
         .catch(err => console.log(err.response))
 }
 
+//get events you're invited to
+export const FETCHING_INVITES_START = "FETCHING_INVITES_START";
+export const FETCHING_INVITES_SUCCESS = "FETCHING_INVITES_SUCCESS";
+export const FETCHING_INVITES_FAILURE = "FETCHING_INVITES_FAILURE";
+
+export const getInvites = (id) => dispatch => {
+    dispatch({ type: FETCHING_INVITES_START});
+    axiosWithAuth()
+        .get(`/events/invites/${id}`)
+        .then (res => {
+            console.log("getInvites Data", res);
+                dispatch({type: FETCHING_INVITES_SUCCESS, payload: res.data})
+        })
+}
+
 //get one event
 export const FETCHING_EVENT_START = "FETCHING_EVENT_START";
 export const FETCHING_EVENT_SUCCESS = "FETCHING_EVENT_SUCCESS";
 export const FETCHING_EVENT_FAILURE = "FETCHING_EVENT_FAILURE";
 
-export const getEvent = (id) => dispatch => {
+export const getEvent = () => dispatch => {
     dispatch({ type: FETCHING_EVENT_START });
      axiosWithAuth()
-    .get(`/events/${id}`)
+    .get(`/events/:id`)
     .then(res => {
 
         dispatch({ type: FETCHING_EVENT_SUCCESS, payload: res.data});
@@ -39,6 +54,8 @@ export const getEvent = (id) => dispatch => {
         dispatch({ type: FETCHING_EVENT_FAILURE, payload: err.response.data.message})
     })
 }
+
+ 
 
 //Add an event
 export const ADD_EVENT = "ADD_EVENT";
