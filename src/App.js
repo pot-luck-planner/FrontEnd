@@ -5,9 +5,10 @@ import Login from './components/Login';
 import PrivateRoute from './utils/PrivateRoute';
 import Events from './components/Events';
 import EventForm from './components/EventForm';
-
-
+import EventUpdate from './components/EventUpdate';
+// import Dashboard from './components/Dashboard';
 import './App.css';
+
 
 function App() {
   return (
@@ -17,10 +18,13 @@ function App() {
         <Switch>
           <PrivateRoute path = "/events" component = {Events} />
           <Route path = "/login" component = {Login} />
-          <PrivateRoute exact path = "/accounts" />
+          {/* <PrivateRoute exact path = "/accounts/:username"
+                        render={props => {
+                          return <Dashboard {...props} />
+                        }} /> */}
           <PrivateRoute path = "/addevent" component = {EventForm} />
-          <{PrivateRoute exact path = "/accounts" />
-          <{PrivateRoute path = "/addevent" component = {EventForm} />
+          <PrivateRoute path = "/addevent" component = {EventForm} />
+          <PrivateRoute path = "/updateevent/:id" render = {(props) => <EventUpdate {...props} /> }  />
           <RegForm />
 
         </Switch>
