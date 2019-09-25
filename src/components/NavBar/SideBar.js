@@ -103,6 +103,7 @@ export const AddPerson = styled(PersonAdd)`
 function SideBar() {
     return(
         <div>
+
             <NavMain>
             <Spacer />
                 <UnOrder>
@@ -138,6 +139,7 @@ function SideBar() {
                     </List>
                 </UnOrder>
             </NavMain>
+
         </div>
     );
 }
