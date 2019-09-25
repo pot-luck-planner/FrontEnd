@@ -21,15 +21,19 @@ const Event = props => {
                 </Card.Content>
             </Card>
             <Link to = {{
+                
                 pathname: `/updateevent/${props.id}`,
-                props: {
+                state: {
                     name: props.name,
                     date: props.date,
                     location: props.location,
                     id: props.id,
                     time: props.time
                 }
-            }}>
+                
+            }
+            
+            }>
                 <Button color='green'>Update Event</Button>
             </Link>
             

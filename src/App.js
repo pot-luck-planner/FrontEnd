@@ -21,7 +21,7 @@ function App() {
           <PrivateRoute path = "/addevent" component = {EventForm} />
           <PrivateRoute exact path = "/accounts" />
           <PrivateRoute path = "/addevent" component = {EventForm} />
-          <PrivateRoute path = "/updateevent/:id" component = {EventUpdate} />
+          <PrivateRoute path = "/updateevent/:id" render = {(props) => <EventUpdate {...props} /> }  />
           <RegForm />
 
         </Switch>

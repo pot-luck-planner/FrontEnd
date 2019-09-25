@@ -12,7 +12,7 @@ const Events = ({ getEvents, isFetching, ...props }) => {
     if (isFetching) {
         return <h3>Loading list of hosted Events</h3>;
     }
-
+    console.log("Event List", props.events)
     return (
         <div>
             <h1>List of Your Hosted Events:</h1>

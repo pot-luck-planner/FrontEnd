@@ -6,7 +6,12 @@ import {
     DELETE_EVENT,
     FETCHING_EVENT_START,
     FETCHING_EVENT_SUCCESS,
-    FETCHING_EVENT_FAILURE
+    FETCHING_EVENT_FAILURE,
+    UPDATE_EVENT_START,
+    UPDATE_EVENT_SUCCESS,
+    UPDATE_EVENT_FAILURE
+
+
 } from '../actions';
 
 export const initialState = {
@@ -94,7 +99,35 @@ export const eventReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: false,
                 error: "Couldn't load the event!"
-            }
+            };
+
+        case UPDATE_EVENT_START:
+            return {
+                ...state,
+                isFetching: true,
+                error:""
+            };
+        
+        case UPDATE_EVENT_SUCCESS:
+            return {
+                ...state,
+                events:[
+                    ...state.events,
+                    {
+                        name: action.payload.name,
+                        date: action.payload.date,
+                        time: action.payload.time,
+                        location: action.payload.location
+                    }
+                ]};
+
+        case UPDATE_EVENT_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: "Couldn't update the event!"
+            };
+
         
 
         

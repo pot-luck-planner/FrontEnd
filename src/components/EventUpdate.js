@@ -10,7 +10,7 @@ const EventUpdate = props => {
     
     
     const [event, setEvent] = useState({
-        id: props.id,
+        // id: "",
         name:"",
         date:"",
         time:"",
@@ -20,8 +20,9 @@ const EventUpdate = props => {
 
     useEffect(() => {
         
-        let id = props
-        props.onGetEvent(event)
+        let id = props.history.location.state.id
+        props.onGetEvent(id)
+       console.log("Event", props)
     },[getEvent])
 
     const handleChange = e => {
@@ -32,7 +33,9 @@ const EventUpdate = props => {
     };
 
     const handleSubmit = e => {
+        let id = props.history.location.state.id
         e.preventDefault();
+        console.log("Update Event", event)
         if (
             
             event.name != "" &&
@@ -41,7 +44,7 @@ const EventUpdate = props => {
             event.location != ""
         ) {
 
-            props.onUpdateEvent(event);
+            props.onUpdateEvent(id, event);
 
         }
     };
@@ -93,8 +96,8 @@ const EventUpdate = props => {
 
 const mapdispatchtoProps = dispatch => {
     return {
-        onUpdateEvent: event => {
-            dispatch(updateEvent(event));
+        onUpdateEvent: (id, event) => {
+            dispatch(updateEvent(id, event));
         },
         onGetEvent: id => {
             dispatch(getEvent(id))

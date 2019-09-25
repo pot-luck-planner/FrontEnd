@@ -25,11 +25,12 @@ export const FETCHING_EVENT_FAILURE = "FETCHING_EVENT_FAILURE";
 
 export const getEvent = (id) => dispatch => {
     dispatch({ type: FETCHING_EVENT_START });
-    return axiosWithAuth()
+     axiosWithAuth()
     .get(`/events/${id}`)
     .then(res => {
+
         dispatch({ type: FETCHING_EVENT_SUCCESS, payload: res.data});
-        console.log("getEvent", res.data)
+        console.log("getEvent", res)
     })
 
     .catch(err => {
@@ -72,16 +73,30 @@ export const UPDATE_EVENT_START = "UPDATE_EVENT_START";
 export const UPDATE_EVENT_SUCCESS = "UPDATE_EVENT_SUCCESS";
 export const UPDATE_EVENT_FAILURE = "UPDATE_EVENT_FAILURE";
 
-export const updateEvent = (dispatch, id, event) => {
-    dispatch({ type: UPDATE_EVENT_START });
-    axiosWithAuth()
-        .put(`/events/${id}`, event)
+export const updateEvent = (id, { name, date, time, location}) => {
+    return (dispatch) => {
+     return axiosWithAuth()
+        .put(`/events/${id}`, {name, date, time, location})
         .then(res => {
-            dispatch({ type: UPDATE_EVENT_SUCCESS, payload: {id, event} });
+            console.log("Update Data", res.data)
+            dispatch(updateEventSuccess(res.data));
         })
         .catch(err => {
             dispatch({ type: UPDATE_EVENT_FAILURE, payload: err.response.data.message})
         })
+}};
+
+export const updateEventSuccess = (data) => {
+    return {
+        type: UPDATE_EVENT_SUCCESS,
+        payload: {
+            // id: data.id,
+            name: data.name,
+            date: data.date,
+            time: data.time,
+            location: data.location
+        }
+    }
 }
 //delete an event
 export const DELETE_EVENT = "DELETE_EVENT";
@@ -91,4 +106,4 @@ export const deleteEvent = id => ({
     payload: {
         id
     }
-});
+})
