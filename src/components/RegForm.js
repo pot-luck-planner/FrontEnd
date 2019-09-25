@@ -5,7 +5,7 @@ import axios from 'axios';
 export const RegBase = styled.div`
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     width: 100%;
     height: 100%;
     background-color: #D9580D;
@@ -29,6 +29,8 @@ export const Label = styled.label`
 `;
 export const Input = styled.input`
     display: inline;
+    border: 1px solid #999999;
+    border-radius: 3px;
     margin-bottom: 1rem;
     font-size: 1rem;
 `;
