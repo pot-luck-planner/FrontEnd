@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-import styled from 'styled-components';
 import { RegBase, Form, RegLgd, Label, Input, RegBorder, RegBtn} from './RegForm';
 import { getEvent, updateEvent } from '../actions';
 import { connect } from 'react-redux';

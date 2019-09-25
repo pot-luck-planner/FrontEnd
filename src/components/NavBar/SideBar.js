@@ -14,19 +14,19 @@ function SideBar() {
             <nav>
                 <ul>
                     <li> 
-                        <a href='https://google.com'>
+                        <a href='/login'>
                             <HomeOutline size="25" title="home" />
                             <span className='NavText'>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/">
+                        <a href="/login">
                             <LogInCircle size='25' title='login' />
                             <span class="nav-text">Login</span>
                         </a>
                     </li>
                     <li class="darkerli">
-                        <a href="/">
+                        <a href="/events">
                             <Event size='25' title='event' />
                             <span class="nav-text">Event</span>
                         </a>

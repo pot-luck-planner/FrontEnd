@@ -2,6 +2,16 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getEvents } from '../actions';
 import Event from './Event';
+import styled from 'styled-components';
+
+const EventListBase = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100%
+height: 100%
+background-color: #D9580D;
+`;
 
 
 const Events = ({ getEvents, isFetching, ...props }) => {
@@ -14,7 +24,7 @@ const Events = ({ getEvents, isFetching, ...props }) => {
     }
     console.log("Event List", props.events)
     return (
-        <div>
+        <EventListBase>
             <h1>List of Your Hosted Events:</h1>
             {props.events.map(item => (
                 <Event  
@@ -28,7 +38,7 @@ const Events = ({ getEvents, isFetching, ...props }) => {
                     location = {item.location}
                 />
             ))}
-        </div>
+        </EventListBase>
     )
 };
 

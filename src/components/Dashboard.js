@@ -1,8 +1,10 @@
-// import React from 'react';
-// import { axiosWithAuth } from '../utils/axiosWithAuth';
+import React from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 
-// const Dashboard = () => {
+const Dashboard = () => {
 
-//     return ("My page")
-// }
+    return ("My page")
+}
+
+export default Dashboard;
