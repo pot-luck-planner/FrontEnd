@@ -26,7 +26,10 @@ function App() {
         
 
         <Switch>
-          <PrivateRoute path = "/events" component = {Events} />
+          <PrivateRoute 
+          path = "/events"
+          render ={(props) =>
+          <Events {...props} /> }  />
           <Route path = "/login" component = {Login} />
           <PrivateRoute exact path = "/account/"
                         render={(props) => 

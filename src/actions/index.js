@@ -1,6 +1,8 @@
 
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { Redirect } from 'react-router-dom'
 import axios from 'axios';
+
 //get all events
 export const FETCHING_EVENTS_START = "FETCHING_EVENTS_START";
 export const FETCHING_EVENTS_SUCCESS = "FETCHING_EVENTS_SUCCESS";
@@ -47,6 +49,7 @@ export const addEvent = ({ name, date, time, location}) => {
         return axiosWithAuth().post("/events", { name, date, time, location})
             .then(res => {
                 dispatch(addEventSuccess(res.data))
+                
                 // console.log(res)
             })
             .catch(err => console.log(err.response));
@@ -99,11 +102,22 @@ export const updateEventSuccess = (data) => {
     }
 }
 //delete an event
-export const DELETE_EVENT = "DELETE_EVENT";
+export const DELETING_EVENT = "DELETING_EVENT";
+export const DELETED_EVENT = "DELETED_EVENT"
+export const DELETING_EVENT_ERROR = "DELETING_EVENT_ERROR";
 
-export const deleteEvent = id => ({
-    type: DELETE_EVENT,
-    payload: {
-        id
-    }
-})
+export const deleteEvent = (id)=> dispatch => {
+    dispatch({ type: DELETING_EVENT });
+    axiosWithAuth()
+      .delete(`/events/${id}`)
+      .then(res => {
+        dispatch({ type: DELETED_EVENT, payload: id });
+      })
+      
+      .catch(err => {
+        dispatch({
+          type: DELETING_EVENT_ERROR,
+          payload: err.response.data.message
+        });
+      });
+  };

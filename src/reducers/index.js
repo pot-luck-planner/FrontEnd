@@ -3,7 +3,9 @@ import {
     FETCHING_EVENTS_SUCCESS,
     FETCHING_EVENTS_FAILURE,
     ADD_EVENT,
-    DELETE_EVENT,
+    DELETING_EVENT,
+    DELETED_EVENT,
+    DELETING_EVENT_ERROR,
     FETCHING_EVENT_START,
     FETCHING_EVENT_SUCCESS,
     FETCHING_EVENT_FAILURE,
@@ -127,13 +129,34 @@ export const eventReducer = (state = initialState, action) => {
                 isFetching: false,
                 error: "Couldn't update the event!"
             };
+       
+        case DELETING_EVENT:
+            return {
+                ...state,
+                isFetching: true,
+                error: ""
+            };
 
-        
+        case DELETED_EVENT:
+            
+            return {
+                ...state,
+                events:[
+                    ...state.events,
+                    {
+                        name: action.payload.name,
+                        date: action.payload.date,
+                        time: action.payload.time,
+                        location: action.payload.location
+                        }
+                    ]};
 
-        
-        
-        case DELETE_EVENT:
-            return state.filter(event => event.id !==action.payload.id);
+        case DELETING_EVENT_ERROR:
+            return {
+                ...state,
+                isFetching: false,
+                error: "Unable to delete the event!"
+            };
 
         default:
             return state;

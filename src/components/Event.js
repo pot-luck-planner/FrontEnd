@@ -3,6 +3,7 @@ import { Card, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { deleteEvent } from '../actions'
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 
 
@@ -18,9 +19,11 @@ border-radius: 5px;
 const Event = props => {
     console.log("Event Data", props)
 
-    const removeEvent = (event) => {
-        console.log("Remove Props", props)
-        deleteEvent(event)
+    const handleDelete = e => {
+        let id = props.id
+        // e.preventDefault();
+        props.onDeleteEvent(id);
+        window.location.reload();
     }
 
     return (
@@ -50,7 +53,8 @@ const Event = props => {
             </Link>
             <Button 
                 color='red'
-                onClick = {removeEvent}>
+                onClick = {handleDelete}
+            >
                     Delete Event
             </Button>
             
@@ -61,4 +65,15 @@ const Event = props => {
     )
 }
 
-export default Event;
+const mapdispatchtoProps = dispatch => {
+    return {
+        onDeleteEvent: (id) => {
+            dispatch(deleteEvent(id))
+        }
+    };
+};
+
+export default connect(
+    null,
+    mapdispatchtoProps
+)(Event);
