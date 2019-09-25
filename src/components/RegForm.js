@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
 
 export const RegBase = styled.div`
@@ -64,7 +63,7 @@ function RegForm(props) {
             .then(res => {
                 console.log(res)
                 localStorage.setItem('token', res.data.token);
-                props.history.push('/events')
+                props.history.push('/accounts/events')
             })
             .catch(err => console.log(err.response));
     }
