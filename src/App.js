@@ -5,8 +5,10 @@ import Login from './components/Login';
 import PrivateRoute from './utils/PrivateRoute';
 import Events from './components/Events';
 import EventForm from './components/EventForm';
+import SideBar from './components/NavBar/SideBar';
 import EventUpdate from './components/EventUpdate';
 // import Dashboard from './components/Dashboard';
+
 import './App.css';
 
 
@@ -15,6 +17,9 @@ function App() {
     <Router>
       <div className = "App">
         <h1>Pot Luck Planner</h1>
+
+        <SideBar />
+
         <Switch>
           <PrivateRoute path = "/events" component = {Events} />
           <Route path = "/login" component = {Login} />
@@ -23,11 +28,11 @@ function App() {
                           return <Dashboard {...props} />
                         }} /> */}
           <PrivateRoute path = "/addevent" component = {EventForm} />
-          <PrivateRoute path = "/addevent" component = {EventForm} />
           <PrivateRoute path = "/updateevent/:id" render = {(props) => <EventUpdate {...props} /> }  />
           <RegForm />
 
         </Switch>
+
 
       </div>
 
