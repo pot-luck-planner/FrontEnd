@@ -17,11 +17,10 @@ border-radius: 5px;
 `;
 
 const Event = props => {
-    console.log("Event Data", props)
+    props.debug && console.log("Event Data", props)
 
     const handleDelete = e => {
         let id = props.id
-        // e.preventDefault();
         props.onDeleteEvent(id);
         window.location.reload();
     }
@@ -37,12 +36,14 @@ const Event = props => {
             </Card>
 
             <Link to = {{
-                pathname: `/addmenu`,
+                pathname: `/event/${props.id}/addmenu`,
                 state: {
                     name: props.name,
+                    food_qty: props.food_qty,
+                    category: props.category
                 }
             }}>
-                <Button color='yellow'>Add Menus</Button>
+                <Button color='yellow'>Add Menu</Button>
             </Link>
             <Link to = {{
                 

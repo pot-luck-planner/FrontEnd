@@ -8,13 +8,11 @@ import EventForm from './components/EventForm';
 import SideBar from './components/NavBar/SideBar';
 import ItemCard from './components/Item/ItemCard';
 import AttendieCard from './components/Attendie/AttendieCard';
-// import UserList from './components/UserList';
 import EventUpdate from './components/EventUpdate';
 import Invites from './components/Invites';
 import Dashboard from './components/Dashboard';
-
-
-
+import Invite from './components/Invite';
+import PrivateRoute1 from './utils/PrivateRoute1';
 import './App.css';
 
 
@@ -25,36 +23,44 @@ function App() {
         <h1>Pot Luck Planner</h1>
 
         <SideBar />
-
-
-
-
+        
         <Switch>
-<
+
+          <PrivateRoute1
+          path = "/invites/:id"
+          component = {Invite} />} />
+
           <PrivateRoute
-          path = "/event/addmenu"
+          path = "/event/:id/addmenu"
           render = {(props) =>
           <ItemCard {...props} />} />
+          
           <PrivateRoute
           path = "/invite-user/:id"
           render={(props) =>
           <AttendieCard {...props} />} />
+          
           <PrivateRoute 
           path = "/events"
           render ={(props) =>
-          <Events {...props} /> }  />
-          <PrivateRoute
+          <Events debug {...props} /> }  />
+          
+          <PrivateRoute1
           path = "/invites"
-          render={(props) => 
-          <Invites {...props} />} />
-          <Route path = "/login" component = {Login} />
-           <PrivateRoute exact path = "/account"
+          component = {Invites} />
+          
+          <PrivateRoute exact path = "/dashboard"
                         render={props => {
                           return <Dashboard {...props} />
                         }} /> 
+          
           <PrivateRoute path = "/addevent" component = {EventForm} />
+          
           <PrivateRoute path = "/updateevent/:id" render = {(props) => <EventUpdate {...props} /> }  />
-          <RegForm />
+          
+          <Route path = '/register' component = {RegForm} />
+
+          <Route path = "/login" component = {Login} />
 
 
       </Switch>        

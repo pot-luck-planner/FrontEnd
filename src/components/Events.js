@@ -15,7 +15,8 @@ background-color: #D9580D;
 `;
 
 
-const Events = ({ getEvents, isFetching, ...props }) => {
+const Events = (props) => {
+    let { getEvents, isFetching } = props;
     useEffect(() => {
         getEvents();
     }, [getEvents]);
@@ -23,7 +24,7 @@ const Events = ({ getEvents, isFetching, ...props }) => {
     if (isFetching) {
         return <h3>Loading list of hosted Events</h3>;
     }
-    console.log("Event List", props.events)
+    
     return (
         <EventListBase>
             <RegLgd>List of Your Hosted Events:</RegLgd>
@@ -32,7 +33,6 @@ const Events = ({ getEvents, isFetching, ...props }) => {
                     name = {item.name}
                     key = {item.id} 
                     id = {item.id} 
-                    // host_id = {item.host_id}
                     host_name = {item.host_name}
                     date = {item.date}
                     time = {item.time}
@@ -50,7 +50,6 @@ const mapStateToProps = state => {
         error: state.error,
         id: state.id,
         name: state.name,
-        // host_id: state.host_id,
         host_name: state.host_name,
         date: state.date,
         time: state.time,

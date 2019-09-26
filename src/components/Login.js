@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-// import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
-import { RegBase, Form, RegLgd, Label, Input, RegBorder, RegBtn} from './RegForm';
 import axios from 'axios';
 
 const LogBase = styled.div`
@@ -68,9 +66,9 @@ const Login = props => {
         e.preventDefault();
         axios.post('https://potluck-planner-v2.herokuapp.com/accounts/login', login)
             .then(res => {
-                console.log(res)
+
                 localStorage.setItem('token', res.data.token);
-                props.history.push(`/accounts/${login.username}`)
+                props.history.push('/dashboard')
             })
             .catch(err => console.log(err.response));
     }
