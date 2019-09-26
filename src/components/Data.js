@@ -65,6 +65,22 @@
 //         }
 //     `;
 
+//SideBar
+// const Anchor = styled.a`
+//     position:relative;
+//     width:210px;
+//     display:table;
+//     border-collapse:collapse;
+//     border-spacing:0;
+//     color:#30BF45;;
+//     text-decoration:none;
+//     -webkit-transform:translateZ(0) scale(1,1);
+//     -webkit-transition:all .14s linear;
+//     transition:all .14s linear;
+//     font-family: 'HeeBo', sans-serif;
+//     text-shadow: 1px 1px 1px  #fff; 
+// `;
+
 //line 32 App
 // <Switch>
 //           <PrivateRoute

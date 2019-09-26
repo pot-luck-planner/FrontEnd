@@ -29,7 +29,29 @@ function App() {
 
 
 
-        
+        <Switch>
+        <PrivateRoute
+        path = "/invite-user/:id"
+        render={(props) =>
+        <AttendieCard {...props} />} />
+        <PrivateRoute 
+        path = "/events"
+        render ={(props) =>
+        <Events {...props} /> }  />
+        <PrivateRoute
+        path = "/invites"
+        render={(props) => 
+        <Invites {...props} />} />
+        <Route path = "/login" component = {Login} />
+         <PrivateRoute exact path = "/accounts/:username"
+                      render={props => {
+                        return <Dashboard {...props} />
+                      }} /> 
+        <PrivateRoute path = "/addevent" component = {EventForm} />
+        <PrivateRoute path = "/updateevent/:id" render = {(props) => <EventUpdate {...props} /> }  />
+        <RegForm />
+
+      </Switch>        
 
       </div>
 

@@ -6,8 +6,8 @@ import axios from 'axios';
 
 const LogBase = styled.div`
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     background-color: #D9580D;
@@ -15,8 +15,10 @@ const LogBase = styled.div`
 const LogForm = styled.form`
     overflow: hidden;
     background-color: #F0F2F2;
+    justify-content: center;
     align-items: center;
-    text-align: left;
+    text-align: center;
+    width: 18%;
     padding: 1rem;
     margin: 1rem;
     border-radius: 5px;
@@ -41,7 +43,7 @@ const LogBorder = styled.fieldset`
     padding: 1rem;
 `;
 const LogBtn = styled.button`
-    margin: 0 20% 0 20%;
+    margin: auto 10%;
     width: 10rem;
     height: 3rem;
     background-color: #30BF45;
