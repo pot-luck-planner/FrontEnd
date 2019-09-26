@@ -84,10 +84,7 @@ function ItemCard() {
                             <ItemInput type='text' id='Qty' name='Qty'
                             placeholder='How much'  /><br />
                         </ItemLabel>
-                        <ItemLabel htmlFor='notes'>Notes<br />
-                            <ItemTxtArea id='notes'  
-                            placeholder='Notes' /><br />
-                        </ItemLabel>
+
                         <ItemBtn>Add Item</ItemBtn>
                 </ItemBorder>
             </ItemForm>

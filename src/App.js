@@ -6,11 +6,14 @@ import PrivateRoute from './utils/PrivateRoute';
 import Events from './components/Events';
 import EventForm from './components/EventForm';
 import SideBar from './components/NavBar/SideBar';
-import ItemCard from './components/Item/ItemCard';
+// import ItemCard from './components/Item/ItemCard';
 import AttendieCard from './components/Attendie/AttendieCard';
 import UserList from './components/UserList';
 import EventUpdate from './components/EventUpdate';
-// import Dashboard from './components/Dashboard';
+import Invites from './components/Invites';
+import Dashboard from './components/Dashboard';
+
+
 
 import './App.css';
 
@@ -22,10 +25,23 @@ function App() {
         <h1>Pot Luck Planner</h1>
 
         <SideBar />
-        <EventForm />
 
-{/*        <Switch>
-          <PrivateRoute path = "/events" component = {Events} />
+
+
+
+        <Switch>
+          <PrivateRoute
+          path = "/invite-user/:id"
+          render={(props) =>
+          <AttendieCard {...props} />} />
+          <PrivateRoute 
+          path = "/events"
+          render ={(props) =>
+          <Events {...props} /> }  />
+          <PrivateRoute
+          path = "/invites"
+          render={(props) => 
+          <Invites {...props} />} />
           <Route path = "/login" component = {Login} />
            <PrivateRoute exact path = "/accounts/:username"
                         render={props => {
@@ -36,7 +52,6 @@ function App() {
           <RegForm />
 
         </Switch>
-*/}
 
       </div>
 
