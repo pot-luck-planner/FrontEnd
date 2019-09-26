@@ -87,6 +87,18 @@ export const addEventSuccess = (data) => {
     }
 };
 
+//add food item to an event
+
+export const ADD_FOOD = "ADD_FOOD"
+
+export const addFood = (id, { name, food_qty, category}) => {
+    return (dispatch) => {
+        return axiosWithAuth().post(`/events/${id}/food`, {name, food_qty, category})
+        .then(res => console.log("addFood POST", res.data))
+        .catch(err => console.log("addFood Error:", err.response))
+    }
+}
+
 //update an event
 export const UPDATE_EVENT_START = "UPDATE_EVENT_START";
 export const UPDATE_EVENT_SUCCESS = "UPDATE_EVENT_SUCCESS";
@@ -158,7 +170,7 @@ export const deleteEvent = (id)=> dispatch => {
   export const INVITE_SUCCESS = "INVITE_SUCCESS";
   export const INVITE_FAILURE = "INVITE_FAILURE";
 
-  export const inviteUser = (id, account_id) => dispatch => {
+  export const inviteUser = (id, {account_id}) => dispatch => {
       console.log("inviteUser ID", id)
       dispatch({ type: INVITE_START });
       axiosWithAuth()

@@ -70,12 +70,13 @@ const Login = props => {
             .then(res => {
                 console.log(res)
                 localStorage.setItem('token', res.data.token);
-                props.history.push('/account')
+                props.history.push(`/accounts/${login.username}`)
             })
             .catch(err => console.log(err.response));
     }
 
     return (
+
         <LogBase>{/*base */}
             <LogForm onSubmit = {logUser}>
                 <LogBorder>
@@ -101,6 +102,7 @@ const Login = props => {
                 </LogBorder>
             </LogForm>
         </LogBase>
+
     )
 }
 

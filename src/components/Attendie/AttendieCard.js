@@ -16,7 +16,7 @@ const MemBase = styled.div`
 `;
 const MemForm = styled.form`
     display: flex;
-    width: 40%;
+    width: 90%;
     background-color: #F0F2F2;
     justify-content: center;
     align-content: center;
@@ -50,7 +50,7 @@ const MemTxtArea = styled.textarea`
 `;
 const MemBorder = styled.fieldset`
     border-radius: 5px;
-    padding: 1rem 3rem;
+    padding: 1rem 1rem;
 `;
 const MemBtn = styled.button`
     display: flex;
@@ -90,10 +90,10 @@ function AttendieCard({ inviteUser, isFetching, ...props}) {
                 <MemBorder>
                     <MemLgd>Add Attendee</MemLgd>
                         <MemLabel htmlFor="id">User ID<br />
-                            <MemInput type='text' id='id' name='id'
+                            <MemInput  id='id' name='id'
                             placeholder='Enter User ID' size='30'
                             onChange = {handleInputChange}
-                            value = {account} /><br />
+                            value = {account.account_id} /><br />
                         </MemLabel>
                         <MemBtn type = "submit">Send Invite</MemBtn>
                 </MemBorder>
@@ -103,6 +103,7 @@ function AttendieCard({ inviteUser, isFetching, ...props}) {
 }
 
 const mapStateToProps = state => {
+    console.log("State.Invites.Account_ID", state)
 
     return {
        account_id: state.invites.account_id

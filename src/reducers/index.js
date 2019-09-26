@@ -20,7 +20,8 @@ import {
     RSVP_FAILURE,
     INVITE_START,
     INVITE_SUCCESS,
-    INVITE_FAILURE
+    INVITE_FAILURE,
+    ADD_FOOD
 
 
 } from '../actions';
@@ -28,12 +29,15 @@ import {
 export const initialState = {
     events: [],
     invites: [],
+    food: [],
     isFetching: false,
     error: ""
 };
 
 export const eventReducer = (state = initialState, action) => {
     switch (action.type) {
+
+        //fetching ALL events
         case FETCHING_EVENTS_START:
             return {
                 ...state,
@@ -67,7 +71,8 @@ export const eventReducer = (state = initialState, action) => {
                 isFetching: false,
                 error: "Could not fetch events"
             }
-
+        
+        //fetching ALL invites
         case FETCHING_INVITES_START:
             return {
                 ...state,
@@ -110,6 +115,7 @@ export const eventReducer = (state = initialState, action) => {
                 error: "Could not get your invites"
             };
         
+        //adding a new event
         case ADD_EVENT:
             return {...state,
             events:[
@@ -124,6 +130,21 @@ export const eventReducer = (state = initialState, action) => {
                 location: action.payload.location}
             ]};
 
+        //adding food items to an event
+        case ADD_FOOD:
+            return {...state,
+                food:[
+                    ...state.food,
+                    {
+                        name: action.payload.name,
+                        food_qty: action.payload.food_qty,
+                        category: action.payload.category
+                    }
+                ]
+                
+            }
+        
+        //fetching one event
         case FETCHING_EVENT_START:
             return {
                 ...state,
@@ -155,6 +176,7 @@ export const eventReducer = (state = initialState, action) => {
                 error: "Couldn't load the event!"
             };
 
+        //updating an event
         case UPDATE_EVENT_START:
             return {
                 ...state,
@@ -181,7 +203,8 @@ export const eventReducer = (state = initialState, action) => {
                 isFetching: false,
                 error: "Couldn't update the event!"
             };
-       
+            
+        //deleting an event
         case DELETING_EVENT:
             return {
                 ...state,
@@ -210,6 +233,7 @@ export const eventReducer = (state = initialState, action) => {
                 error: "Unable to delete the event!"
             };
 
+        //RESVP to an event
         case RSVP_START:
             return {
                 ...state,
@@ -244,7 +268,8 @@ export const eventReducer = (state = initialState, action) => {
                 isFetching: true,
                 error: ""
             };
-
+        
+        //sending an invite
         case INVITE_SUCCESS:
             return {
                 ...state,
@@ -274,6 +299,7 @@ export const eventReducer = (state = initialState, action) => {
                 error: "Failed to send invite"
             }
 
+        
         default:
             return state;
     }
