@@ -1,7 +1,6 @@
 
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { Redirect } from 'react-router-dom'
-import axios from 'axios';
+
 
 //get all events
 export const FETCHING_EVENTS_START = "FETCHING_EVENTS_START";
@@ -118,6 +117,21 @@ export const updateEventSuccess = (data) => {
         }
     }
 }
+
+//rsvp to an event
+export const RSVP_START = "RSVP_START";
+export const RSVP_SUCCESS = "RSVP_SUCCESS";
+export const RSVP_FAILURE = "RSVP_FAILURE";
+
+export const rsvpEvent = (id) => dispatch => {
+    dispatch({ type: RSVP_START});
+    axiosWithAuth()
+    .put(`events/${id}/invites`)
+    .then (res => {
+        console.log("RSVP Data", res)
+    })
+}
+
 //delete an event
 export const DELETING_EVENT = "DELETING_EVENT";
 export const DELETED_EVENT = "DELETED_EVENT"

@@ -14,7 +14,10 @@ import {
     FETCHING_EVENT_FAILURE,
     UPDATE_EVENT_START,
     UPDATE_EVENT_SUCCESS,
-    UPDATE_EVENT_FAILURE
+    UPDATE_EVENT_FAILURE,
+    RSVP_START,
+    RSVP_SUCCESS,
+    RSVP_FAILURE
 
 
 } from '../actions';
@@ -85,7 +88,10 @@ export const eventReducer = (state = initialState, action) => {
                         firstname: action.payload.firstname,
                         food: action.payload.food,
                         notes: action.payload.notes,
-                        rsvp: action.payload.rsvp
+                        rsvp: action.payload.rsvp,
+                        date: action.payload.date,
+                        time: action.payload.time,
+                        location: action.payload.location
                         
                     }
                 ],
@@ -200,6 +206,34 @@ export const eventReducer = (state = initialState, action) => {
                 isFetching: false,
                 error: "Unable to delete the event!"
             };
+
+        case RSVP_START:
+            return {
+                ...state,
+                isFetching: true,
+                error: ""
+            };
+
+        case RSVP_SUCCESS:
+            return {
+                ...state,
+                invites:[
+                    ...state.invites,
+                    {
+                        food: action.payload.food,
+                        rsvp: action.payload.rsvp
+
+                    }
+                ]
+
+            };
+        
+        case RSVP_FAILURE:
+            return {
+                ...state,
+                isFecthing: false,
+                error: "Unable to submit RSVP!"
+            }
 
         default:
             return state;

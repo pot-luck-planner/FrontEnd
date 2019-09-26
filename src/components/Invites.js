@@ -12,7 +12,7 @@ const Invites = ({ getInvites, isFetching, ...props }) => {
     
     useEffect(() => {
         getInvites();
-    }, []);
+    }, [getInvites]);
 
     if (isFetching) {
         console.log("Fired")
@@ -36,6 +36,9 @@ const Invites = ({ getInvites, isFetching, ...props }) => {
                     food = {item.food}
                     notes = {item.notes}
                     rsvp = {item.rsvp}
+                    date = {item.date}
+                    time = {item.time}
+                    location = {item.location}
                 />
             ))}
         </EventListBase>
@@ -58,7 +61,10 @@ const mapStateToProps = state => {
         lastname: state.firstname,
         food: state.food,
         notes: state.notes,
-        rsvp: state.rsvp
+        rsvp: state.rsvp,
+        date: state.date,
+        time: state.time,
+        location: state.location
     };
 };
 
