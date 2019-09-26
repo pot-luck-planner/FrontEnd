@@ -22,7 +22,7 @@ class EventForm extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log("Add Event Props", this.state)
+        // console.log("Add Event Props", this.state)
         if (this.state.name.trim() && this.state.date.trim() && this.state.time.trim() && this.state.location.trim()) {
             this.props.onAddEvent(this.state);
             

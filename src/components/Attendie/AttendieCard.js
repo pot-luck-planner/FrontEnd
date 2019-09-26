@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { inviteUser } from '../../actions'
@@ -70,40 +70,46 @@ const MemBtn = styled.button`
     }
 `;
 
-function AttendieCard({inviteUser, isFetching, ...props}) {
+function AttendieCard({ inviteUser, isFetching, ...props}) {
+    const [account, setAccount] = useState("");
+    console.log("Attendee Props", props)
 
+    const handleInputChange = e => {
+        setAccount(e.target.value)
+    }
+    
     const handleInvite = e => {
-        let id = props.id;
+        let id = props.match.params.id;
         e.preventDefault();
-        props.onInviteUser(id)
+        inviteUser(id, account)
     }
 
     return(
         <MemBase>
-            <MemForm>
+            <MemForm onSubmit = {handleInvite} >
                 <MemBorder>
                     <MemLgd>Add Attendee</MemLgd>
                         <MemLabel htmlFor="id">User ID<br />
                             <MemInput type='text' id='id' name='id'
-                            placeholder='Enter User ID' size='30' /><br />
+                            placeholder='Enter User ID' size='30'
+                            onChange = {handleInputChange}
+                            value = {account} /><br />
                         </MemLabel>
-                        <MemBtn onClick = {handleInvite}>Add Item</MemBtn>
+                        <MemBtn type = "submit">Send Invite</MemBtn>
                 </MemBorder>
             </MemForm>
         </MemBase>
     );
 }
 
-const mapdispatchtoProps = dispatch => {
+const mapStateToProps = state => {
 
     return {
-        onInviteUser: (id) => {
-            dispatch(inviteUser(id))
-        }
+       account_id: state.invites.account_id
     }
 
 }
 export default connect(
-    null,
-    mapdispatchtoProps
+    mapStateToProps,
+    { inviteUser }
 )(AttendieCard)

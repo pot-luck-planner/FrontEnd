@@ -250,7 +250,7 @@ export const eventReducer = (state = initialState, action) => {
                 ...state,
                 invites: [
                     ...state.invites,
-                    {id: action.payload.event_id,
+                    {   id: action.payload.event_id,
                         name: action.payload.name,
                         host_id: action.payload.host_id,
                         host: action.payload.host,

@@ -158,10 +158,11 @@ export const deleteEvent = (id)=> dispatch => {
   export const INVITE_SUCCESS = "INVITE_SUCCESS";
   export const INVITE_FAILURE = "INVITE_FAILURE";
 
-  export const inviteUser = (id) => dispatch => {
+  export const inviteUser = (id, account_id) => dispatch => {
+      console.log("inviteUser ID", id)
       dispatch({ type: INVITE_START });
       axiosWithAuth()
-      .post(`events/${id}/invites`)
+      .post(`events/${id}/invites`, {account_id})
       .then(res => console.log("inviteUser Res", res))
       .catch(err => {
           dispatch({
