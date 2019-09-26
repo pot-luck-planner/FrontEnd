@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+// import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 import { RegBase, Form, RegLgd, Label, Input, RegBorder, RegBtn} from './RegForm';
 import axios from 'axios';
@@ -74,7 +74,6 @@ const Login = props => {
     }
 
     return (
-<<<<<<< HEAD
         <LogBase>{/*base */}
             <LogForm onSubmit = {logUser}>
                 <LogBorder>
@@ -100,39 +99,6 @@ const Login = props => {
                 </LogBorder>
             </LogForm>
         </LogBase>
-=======
-        <div>
-            
-            <RegBase className='RegBase'>
-                <Form 
-                    classname="RegForm"
-                    onSubmit = {logUser}>
-                <RegBorder>
-                    <RegLgd>Login</RegLgd>
-                    <Label htmlFor='username'>Username<br />
-                        <Input
-                            type="text"
-                            placeholder="Username"
-                            name="username"
-                            value={login.username}
-                            onChange={updateLogin}
-                        />
-                    </Label>
-                    <Label htmlFor="password">Password<br />
-                        <Input
-                            type="password"
-                            placeholder="Password"
-                            name="password"
-                            value={login.password}
-                            onChange = {updateLogin}
-                        />
-                    </Label>
-                    <RegBtn>Log In</RegBtn>
-                </RegBorder>
-                </Form>
-            </RegBase>
-        </div>
->>>>>>> 1152a6d18cd2ed7fdb1748c0bebecd769f2d07db
     )
 }
 

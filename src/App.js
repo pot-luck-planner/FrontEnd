@@ -10,7 +10,8 @@ import ItemCard from './components/Item/ItemCard';
 import AttendieCard from './components/Attendie/AttendieCard';
 import UserList from './components/UserList';
 import EventUpdate from './components/EventUpdate';
-// import Dashboard from './components/Dashboard';
+import RSVP from './components/RSVP/RSVP';
+import Dashboard from './components/Dashboard';
 
 import './App.css';
 
@@ -22,7 +23,7 @@ function App() {
         <h1>Pot Luck Planner</h1>
 
         <SideBar />
-        <EventForm />
+        <Dashboard />
 
 {/*        <Switch>
           <PrivateRoute path = "/events" component = {Events} />
