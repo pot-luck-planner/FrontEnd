@@ -68,6 +68,7 @@ const ItemBtn = styled.button`
 `;
 
 function ItemCard({addFood, ...props}) {
+    console.log("ItemCard Props: ", props)
     const [food, setFood] = useState("");
 
     const handleInputChange = e => {
@@ -85,8 +86,8 @@ function ItemCard({addFood, ...props}) {
             <ItemForm onSubmit = {handleFood}>
                 <ItemBorder>
                     <ItemLgd>Add Items</ItemLgd>
-                        <ItemLabel htmlFor="ItemName">Item Name<br />
-                            <ItemInput type='text' id='ItemName' name='ItemName'
+                        <ItemLabel htmlFor="name">Item Name<br />
+                            <ItemInput type='text' id='name' name='name'
                             placeholder='Add Food' onChange = {handleInputChange} value = {food.name}  /><br />
                         </ItemLabel>
                         {/* <ItemLabel htmlFor='Category'>Category<br />

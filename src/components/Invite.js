@@ -1,19 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Button, Dropdown } from 'semantic-ui-react';
 import { rsvpEvent } from '../actions'
 import { EventDiv } from './Event';
 import { connect } from 'react-redux';
+import { axiosWithAuth } from '../utils/axiosWithAuth'
 
 
 
-const Invite = props => {
-    console.log("Invite Props", props)
+const Invite = ({rsvpEvent, ...props}) => {
+    const [food, setFood] = useState([]);
+    const [newRsvp, setNewRsvp] = useState({rsvp:false, food:""})
     
     const handleRSVP = e => {
-        let id = props.id;
+        let id = props.invite_id;
+        let rsvp = props.rsvp
         e.preventDefault();
-        props.onRSVP(id)
+        setNewRsvp({...newRsvp, rsvp: 1 })
+        rsvpEvent(id, {...newRsvp, rsvp: 1 })
     }
+
+    const handleFood = async e => {
+        e.persist()
+        setNewRsvp({food: e.target.textContent})
+    }
+
+    
+   useEffect(() => getFood(), []);
+    function getFood() {
+        const id = props.event_id.toString();
+
+     axiosWithAuth()
+       .get(`https://potluck-planner-v2.herokuapp.com/events/${id}/food`)
+       .then(res => {
+           setFood(res.data);
+       })
+       .catch(err => console.log(err.response));
+   }
+   console.log("Food: ", food)
+    
 
     return (
         <EventDiv>
@@ -22,9 +46,13 @@ const Invite = props => {
                     <Card.Header>{props.name}</Card.Header>
                     <Card.Meta>{props.date} {props.time} {props.location}</Card.Meta>
                     <Card.Description>Invited By: {props.host}</Card.Description>
-                    <Dropdown text = "Food to Bring">
-                        <Dropdown.Menu>
-                        <Dropdown.Item text={props.food} />
+                    <Dropdown text = {newRsvp.food.length ? newRsvp.food:"Food to Bring"}>
+                        <Dropdown.Menu >
+                { food.map(food => <Dropdown.Item 
+                                    text={`${food.name}`} 
+                                    key ={food.id}
+                                    onClick = {handleFood}
+                                    />) }
                         </Dropdown.Menu>
                     </Dropdown>
                    
@@ -37,15 +65,15 @@ const Invite = props => {
     )
 }
 
-const mapdispatchtoProps = dispatch => {
+const mapStateToProps = state => {
+
+
     return {
-        onRSVP: (id) => {
-            dispatch(rsvpEvent(id))
-        }
-    }
+
+}
 }
 export default connect(
-    null,
-    mapdispatchtoProps
+    mapStateToProps,
+    {rsvpEvent}
 )(Invite);
 

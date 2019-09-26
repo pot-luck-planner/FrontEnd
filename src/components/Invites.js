@@ -8,25 +8,23 @@ import { RegLgd } from './RegForm';
 
 
 const Invites = ({ getInvites, isFetching, ...props }) => {
-    console.log("Invite props", props)
     
     useEffect(() => {
         getInvites();
     }, [getInvites]);
 
     if (isFetching) {
-        console.log("Fired")
         return <h3>Loading list of your invites</h3>;
     }
-    console.log("Invite List", props)
+
     return (
         <EventListBase>
             <RegLgd>Events You're Invited to:</RegLgd>
             {props.invites && props.invites.map(item => (
                 <Invite 
                     name = {item.name}
-                    key = {item.id} 
-                    id = {item.id} 
+                    key = {item.invite_id} 
+                    invite_id = {item.invite_id} 
                     host = {item.host}
                     host_id = {item.host_id}
                     account_id = {item.account_id}
@@ -39,6 +37,7 @@ const Invites = ({ getInvites, isFetching, ...props }) => {
                     date = {item.date}
                     time = {item.time}
                     location = {item.location}
+                    event_id = {item.event_id}
                 />
             ))}
         </EventListBase>
@@ -52,7 +51,7 @@ const mapStateToProps = state => {
         invites: state.invites,
         isFetching: state.isFetching,
         error: state.error,
-        id: state.id,
+        invite_id: state.invite_id,
         name: state.name,
         host_id: state.host_id,
         account_id: state.account_id,
@@ -64,7 +63,8 @@ const mapStateToProps = state => {
         rsvp: state.rsvp,
         date: state.date,
         time: state.time,
-        location: state.location
+        location: state.location,
+        event_id: state.event_id
     };
 };
 
@@ -72,3 +72,4 @@ export default connect(
     mapStateToProps,
     { getInvites }
 )(Invites);
+

@@ -72,7 +72,7 @@ const MemBtn = styled.button`
 
 function AttendieCard({ inviteUser, isFetching, ...props}) {
     const [account, setAccount] = useState("");
-    console.log("Attendee Props", props)
+    
 
     const handleInputChange = e => {
         setAccount(e.target.value)
@@ -103,7 +103,7 @@ function AttendieCard({ inviteUser, isFetching, ...props}) {
 }
 
 const mapStateToProps = state => {
-    console.log("State.Invites.Account_ID", state)
+    
 
     return {
        account_id: state.invites.account_id

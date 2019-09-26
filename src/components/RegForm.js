@@ -53,6 +53,7 @@ export const RegBtn = styled.button`
 `;
 
 function RegForm(props) {
+
     const [regUser, setRegUser] = useState({firstname:"", lastname:"", username:"", password:""});
 
     const updateRegister = e =>{
@@ -63,9 +64,9 @@ function RegForm(props) {
         e.preventDefault();
         axios.post('https://potluck-planner-v2.herokuapp.com/accounts/register', regUser)
             .then(res => {
-                console.log(res)
+
                 localStorage.setItem('token', res.data.token);
-                props.history.push('/accounts/')
+                props.history.push('/dashboard')
             })
             .catch(err => console.log(err.response));
     }

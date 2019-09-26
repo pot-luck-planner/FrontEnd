@@ -66,7 +66,7 @@ export const addEvent = ({ name, date, time, location}) => {
             .then(res => {
                 dispatch(addEventSuccess(res.data))
                 
-                // console.log(res)
+               
             })
             .catch(err => console.log(err.response));
     };
@@ -78,8 +78,6 @@ export const addEventSuccess = (data) => {
         payload: {
             id: data.id,
             name: data.name,
-            // host_id: data.host_id,
-            // host_name: data.host_name,
             date: data.date,
             time: data.time,
             location: data.location
@@ -88,15 +86,21 @@ export const addEventSuccess = (data) => {
 };
 
 //add food item to an event
+export const ADD_FOOD_START = "ADD_FOOD";
+export const ADD_FOOD = "ADD_FOOD";
+export const ADD_FOOD_FAILURE = "ADD_FOOD_FAILURE";
 
-export const ADD_FOOD = "ADD_FOOD"
-
-export const addFood = (id, { name, food_qty, category}) => {
-    return (dispatch) => {
-        return axiosWithAuth().post(`/events/${id}/food`, {name, food_qty, category})
+export const addFood = (id, name, food_qty, category) => dispatch => {
+    console.log("Food to be added: ", name)
+    let newFood = {
+        name: name
+       
+    }
+    
+    axiosWithAuth().post(`/events/${id}/food`, newFood)
         .then(res => console.log("addFood POST", res.data))
         .catch(err => console.log("addFood Error:", err.response))
-    }
+    
 }
 
 //update an event
@@ -121,7 +125,7 @@ export const updateEventSuccess = (data) => {
     return {
         type: UPDATE_EVENT_SUCCESS,
         payload: {
-            // id: data.id,
+           
             name: data.name,
             date: data.date,
             time: data.time,
@@ -135,12 +139,16 @@ export const RSVP_START = "RSVP_START";
 export const RSVP_SUCCESS = "RSVP_SUCCESS";
 export const RSVP_FAILURE = "RSVP_FAILURE";
 
-export const rsvpEvent = (id) => dispatch => {
+export const rsvpEvent = (id, {rsvp, food}) => dispatch => {
+    console.log("rsvpEvent Food", food)
     dispatch({ type: RSVP_START});
     axiosWithAuth()
-    .put(`events/${id}/invites`)
+    .put(`events/${id}/invites`, {rsvp, food})
     .then (res => {
         console.log("RSVP Data", res)
+    })
+    .catch(err => {
+        dispatch({ type: RSVP_FAILURE, payload: err.response.data.message})
     })
 }
 
@@ -170,11 +178,15 @@ export const deleteEvent = (id)=> dispatch => {
   export const INVITE_SUCCESS = "INVITE_SUCCESS";
   export const INVITE_FAILURE = "INVITE_FAILURE";
 
-  export const inviteUser = (id, {account_id}) => dispatch => {
+  export const inviteUser = (id, account_id) => dispatch => {
       console.log("inviteUser ID", id)
+      console.log("User To Be Invited: ", account_id)
+      let invite = {
+        account_id: account_id
+    }
       dispatch({ type: INVITE_START });
       axiosWithAuth()
-      .post(`events/${id}/invites`, {account_id})
+      .post(`events/${id}/invites`, invite)
       .then(res => console.log("inviteUser Res", res))
       .catch(err => {
           dispatch({

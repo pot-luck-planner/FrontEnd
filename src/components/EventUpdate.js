@@ -4,11 +4,8 @@ import { getEvent, updateEvent } from '../actions';
 import { connect } from 'react-redux';
 
 const EventUpdate = props => {
-    console.log("EventUpdate", props);
-    
     
     const [event, setEvent] = useState({
-        // id: "",
         name:"",
         date:"",
         time:"",
@@ -20,7 +17,7 @@ const EventUpdate = props => {
         
         let id = props.history.location.state.id
         props.onGetEvent(id)
-       console.log("Event", props)
+
     },[props])
 
     const handleChange = e => {
@@ -33,17 +30,14 @@ const EventUpdate = props => {
     const handleSubmit = e => {
         let id = props.history.location.state.id
         e.preventDefault();
-        console.log("Update Event", event)
+
         if (
-            
             event.name !== "" &&
             event.date !== "" &&
             event.time !== "" &&
             event.location !== ""
         ) {
-
             props.onUpdateEvent(id, event);
-
         }
     };
 

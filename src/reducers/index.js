@@ -21,7 +21,9 @@ import {
     INVITE_START,
     INVITE_SUCCESS,
     INVITE_FAILURE,
-    ADD_FOOD
+    ADD_FOOD_START,
+    ADD_FOOD,
+    ADD_FOOD_FAILURE,
 
 
 } from '../actions';
@@ -53,7 +55,6 @@ export const eventReducer = (state = initialState, action) => {
                     {
                         id: action.payload.id,
                         name: action.payload.name,
-                        // host_id: action.payload.host_id,
                         host_name: action.payload.host_name,
                         date: action.payload.date,
                         time: action.payload.time,
@@ -81,13 +82,14 @@ export const eventReducer = (state = initialState, action) => {
             };
 
         case FETCHING_INVITES_SUCCESS:
-            console.log("Action Payload", action.payload)
+
             return {
                 ...state,
                 invites: [
                     ...state.invites,
                     {
-                        id: action.payload.event_id,
+                        invite_id: action.payload.id,
+                        event_id: action.payload.event_id,
                         name: action.payload.name,
                         host_id: action.payload.host_id,
                         host: action.payload.host,
@@ -121,16 +123,20 @@ export const eventReducer = (state = initialState, action) => {
             events:[
                 ...state.events,
                 {
-                // id: action.payload.id,
                 name: action.payload.name,
-                // host_id: action.payload.host_id,
-                // host_name: action.payload.host_name,
                 date: action.payload.date,
                 time: action.payload.time,
                 location: action.payload.location}
             ]};
 
         //adding food items to an event
+        case ADD_FOOD_START:
+            return {
+                ...state,
+                isFetching: true,
+                error: ""
+            };
+
         case ADD_FOOD:
             return {...state,
                 food:[
@@ -143,6 +149,13 @@ export const eventReducer = (state = initialState, action) => {
                 ]
                 
             }
+        
+        case ADD_FOOD_FAILURE:
+
+            return {...state,
+            isFetching: false,
+            error: "Could not add food item"
+        };
         
         //fetching one event
         case FETCHING_EVENT_START:
