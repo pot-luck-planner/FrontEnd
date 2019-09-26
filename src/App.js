@@ -7,7 +7,7 @@ import Events from './components/Events';
 import EventForm from './components/EventForm';
 import SideBar from './components/NavBar/SideBar';
 // import ItemCard from './components/Item/ItemCard';
-// import AttendieCard from './components/Attendie/AttendieCard';
+import AttendieCard from './components/Attendie/AttendieCard';
 import EventUpdate from './components/EventUpdate';
 import Invites from './components/Invites';
 import Dashboard from './components/Dashboard';
@@ -26,6 +26,10 @@ function App() {
         
 
         <Switch>
+          <PrivateRoute
+          path = "/invite-user/:id"
+          render={(props) =>
+          <AttendieCard {...props} />} />
           <PrivateRoute 
           path = "/events"
           render ={(props) =>

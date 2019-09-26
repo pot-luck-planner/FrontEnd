@@ -49,14 +49,27 @@ const Event = props => {
             }
             
             }>
-                <Button color='green'>Update Event</Button>
+                <Button color='green'>Update</Button>
             </Link>
             <Button 
                 color='red'
                 onClick = {handleDelete}
             >
-                    Delete Event
+                    Delete
             </Button>
+            <Link to = {{
+                pathname: `/invite-user/${props.id}`,
+                state: {
+                    name: props.name,
+                    date: props.date,
+                    location: props.location,
+                    id: props.id,
+                    time: props.time
+                }
+            }}>
+            <Button color='blue'>Invite User</Button>
+            </Link>
+                
             
             
             

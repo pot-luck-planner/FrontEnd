@@ -12,7 +12,7 @@ const Invite = props => {
     const handleRSVP = e => {
         let id = props.id;
         e.preventDefault();
-        props.onRSVP({rsvp:1},id)
+        props.onRSVP(id)
     }
 
     return (
@@ -40,7 +40,7 @@ const Invite = props => {
 const mapdispatchtoProps = dispatch => {
     return {
         onRSVP: (id) => {
-            dispatch(rsvpEvent({rsvp: 1},id))
+            dispatch(rsvpEvent(id))
         }
     }
 }

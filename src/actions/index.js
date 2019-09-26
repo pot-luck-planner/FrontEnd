@@ -152,3 +152,21 @@ export const deleteEvent = (id)=> dispatch => {
         });
       });
   };
+
+  //invite a user to event by id
+  export const INVITE_START = "INVITE_START";
+  export const INVITE_SUCCESS = "INVITE_SUCCESS";
+  export const INVITE_FAILURE = "INVITE_FAILURE";
+
+  export const inviteUser = (id) => dispatch => {
+      dispatch({ type: INVITE_START });
+      axiosWithAuth()
+      .post(`events/${id}/invites`)
+      .then(res => console.log("inviteUser Res", res))
+      .catch(err => {
+          dispatch({
+              type: INVITE_FAILURE,
+              payload: err.response.data.message
+          })
+      })
+  }

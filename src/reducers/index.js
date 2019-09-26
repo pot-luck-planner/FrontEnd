@@ -17,7 +17,10 @@ import {
     UPDATE_EVENT_FAILURE,
     RSVP_START,
     RSVP_SUCCESS,
-    RSVP_FAILURE
+    RSVP_FAILURE,
+    INVITE_START,
+    INVITE_SUCCESS,
+    INVITE_FAILURE
 
 
 } from '../actions';
@@ -221,7 +224,7 @@ export const eventReducer = (state = initialState, action) => {
                     ...state.invites,
                     {
                         food: action.payload.food,
-                        rsvp: action.payload.rsvp
+                        rsvp: !state.rsvp
 
                     }
                 ]
@@ -233,6 +236,42 @@ export const eventReducer = (state = initialState, action) => {
                 ...state,
                 isFecthing: false,
                 error: "Unable to submit RSVP!"
+            };
+
+        case INVITE_START:
+            return {
+                ...state,
+                isFetching: true,
+                error: ""
+            };
+
+        case INVITE_SUCCESS:
+            return {
+                ...state,
+                invites: [
+                    ...state.invites,
+                    {id: action.payload.event_id,
+                        name: action.payload.name,
+                        host_id: action.payload.host_id,
+                        host: action.payload.host,
+                        account_id: action.payload.account_id,
+                        username: action.payload.username,
+                        firstname: action.payload.firstname,
+                        food: action.payload.food,
+                        notes: action.payload.notes,
+                        rsvp: action.payload.rsvp,
+                        date: action.payload.date,
+                        time: action.payload.time,
+                        location: action.payload.location}
+                ]
+
+            };
+
+        case INVITE_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: "Failed to send invite"
             }
 
         default:
