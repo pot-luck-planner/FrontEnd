@@ -1,3 +1,6 @@
+**Notes**
+- Sidebar in Nav is useing a tag for links.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

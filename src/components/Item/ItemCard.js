@@ -45,6 +45,7 @@ const ItemTxtArea = styled.textarea`
 const ItemBorder = styled.fieldset`
     border-radius: 5px;
     padding: 1rem 3rem;
+    width: 300px;
 `;
 const ItemBtn = styled.button`
     display: flex;
@@ -73,16 +74,17 @@ function ItemCard() {
                     <ItemLgd>Add Items</ItemLgd>
                         <ItemLabel htmlFor="ItemName">Item Name<br />
                             <ItemInput type='text' id='ItemName' name='ItemName'
-                            placeholder='Add Item' size='30' /><br />
+                            placeholder='Add Item'  /><br />
                         </ItemLabel>
                         <ItemLabel htmlFor='Category'>Category<br />
-                            <ItemInput type='text' id='Category' name='Category' size='30'
+                            <ItemInput type='text' id='Category' name='Category' 
                             placeholder='Appetizer, Drinks, Main Dish, Dessert, Party Supply' /><br />
                         </ItemLabel>
                         <ItemLabel htmlFor='Qty'>Quantity<br />
                             <ItemInput type='text' id='Qty' name='Qty'
-                            placeholder='How much' size="30" /><br />
+                            placeholder='How much'  /><br />
                         </ItemLabel>
+
                         <ItemBtn>Add Item</ItemBtn>
                 </ItemBorder>
             </ItemForm>

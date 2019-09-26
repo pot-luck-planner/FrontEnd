@@ -7,7 +7,7 @@ import {Fastfood} from 'styled-icons/material';
 import {PersonAdd} from 'styled-icons/material';
 
 const Spacer = styled.div`
-    height: 3rem;
+    height: 4.5rem;
 `;
 const NavMain = styled.nav`
     background:#F7F7F7;
@@ -22,7 +22,7 @@ const NavMain = styled.nav`
     transition:width .2s linear;
     -webkit-transform:translateZ(0) scale(1,1);
     box-shadow: 1px 0 15px rgba(0, 0, 0, 0.07);
-    opacity:1;
+    opacity:.2;
         :hover {
             width:250px;
             overflow:hidden;
@@ -32,8 +32,6 @@ const NavMain = styled.nav`
 const UnOrder = styled.ul`
     margin:7px 0;
     padding-left: 15px;
-    
-    
 `;
 const List = styled.li`
     border-bottom: 1.5px solid #C4F2D0;
@@ -50,13 +48,11 @@ const Anchor = styled.a`
     border-collapse:collapse;
     border-spacing:0;
     color:#30BF45;;
-    // font-size: 13px;
     text-decoration:none;
     -webkit-transform:translateZ(0) scale(1,1);
     -webkit-transition:all .14s linear;
     transition:all .14s linear;
     font-family: 'HeeBo', sans-serif;
-    // border-top:1px solid #333333;
     text-shadow: 1px 1px 1px  #fff; 
 `;
 const NavText = styled.span`
@@ -70,48 +66,39 @@ export const HomeIcon = styled(HomeOutline)`
     position:relative;
     display:table-cell;
     width:25px;
-    
     text-align:center;
     vertical-align:middle;
-    
 `;
 export const LogIn = styled(LogInCircle)`
     position:relative;
     display:table-cell;
     width:25px;
-    
     text-align:center;
     vertical-align:middle;
-    
 `;
 export const AddEvent = styled(Event)`
     position:relative;
     display:table-cell;
     width:25px;
-    
     text-align:center;
     vertical-align:middle;
-    
 `;
 export const AddFood = styled(Fastfood)`
     position:relative;
     display:table-cell;
     width:25px;
-    
     text-align:center;
     vertical-align:middle;
-    
 `;
 export const AddPerson = styled(PersonAdd)`
     position:relative;
     display:table-cell;
     width:25px;
-    
     text-align:center;
     vertical-align:middle;
-    
 `;
 
+//Anchor is an a tag. Needs to be Link
 
 function SideBar() {
     return(

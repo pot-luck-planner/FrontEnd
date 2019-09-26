@@ -1,7 +1,64 @@
 import React from 'react';
 import { addEvent } from '../actions';
 import { connect } from 'react-redux';
-import { RegBase, Form, RegLgd, Label, Input, RegBorder, RegBtn } from './RegForm';
+
+import styled from 'styled-components';
+
+const EveBase = styled.div`
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    background-color: #D9580D;
+`;
+const EveDiv = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+`;
+const EveForm = styled.form`
+    display: flex;
+    overflow: hidden;
+    background-color: #F0F2F2;
+    align-items: center;
+    text-align: left;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 5px;
+`;
+const EveLgd = styled.legend`
+    font-size: 1.5rem;
+`;
+const EveLabel = styled.label`
+    display: inline;
+    font-size: 1rem;
+    padding: 0 .5rem;
+`;
+const EveInput = styled.input`
+    display: inline;
+    border: 1px solid #999999;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+`;
+const EveBorder = styled.fieldset`
+    border-radius: 5px;
+    padding: 1rem;
+`;
+const EveBtn = styled.button`
+    // margin: 0 20% 0 20%;
+    width: 5rem;
+    height: 3rem;
+    background-color: #30BF45;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    color: white;
+
+    :hover{
+        background-color: #C4F2D0;
+        color: black;
+    }
+`;
 
 class EventForm extends React.Component {
     state = {
@@ -41,60 +98,57 @@ class EventForm extends React.Component {
 
     render() {
         return (
-            <RegBase>
-                <Form 
-                className="RegForm"
-                onSubmit = {this.handleSubmit}>
-                    <RegBorder>
-                        <RegLgd>Add an Event</RegLgd>
-                        <Label htmlFor="name">Event Name<br />
-                            <Input
-                                type="text"
-                                placeholder="Name of Event"
-                                className = "form-control"
-                                name = "name"
-                                onChange = { this.handleInputChange }
-                                value = { this.state.name }
-                            /><br />
-                        </Label>
+
+            <EveBase>
+                <EveForm onSubmit = {this.handleSubmit}>
+                    <EveBorder className="form-group">
+                        <EveLgd>Add an Event</EveLgd>
+                        <EveInput
+                            type="text"
+                            placeholder="Name of Event"
+                            className = "form-control"
+                            name = "name"
+                            onChange = { this.handleInputChange }
+                            value = { this.state.name }
+                        />
+                                  
+                        <EveInput
+                            type="text"
+                            placeholder="Date of Event"
+                            className = "form-control"
+                            name = "date"
+                            onChange = { this.handleInputChange }
+                            value = { this.state.date }
+                        />
+                    
+                        <EveInput
+                            type="text"
+                            placeholder="Time of Event"
+                            className = "form-control"
+                            name = "time"
+                            onChange = { this.handleInputChange }
+                            value = { this.state.time }
+                        />
+                    
+                    
+                        <EveInput
+                            type="text"
+                            placeholder="Location of Event"
+                            className = "form-control"
+                            name = "location"
+                            onChange = { this.handleInputChange }
+                            value = { this.state.location }
+                        />
                    
-                        <Label htmlFor='date'>Date of Event<br />
-                            <Input
-                                type="text"
-                                placeholder="Date of Event"
-                                className = "form-control"
-                                name = "date"
-                                onChange = { this.handleInputChange }
-                                 value = { this.state.date }
-                            /><br />
-                        </Label>
-                        <Label htmlFor='time'>Time of Event<br />
-                            <Input
-                                type="text"
-                                placeholder="Time of Event"
-                                className = "form-control"
-                                name = "time"
-                                onChange = { this.handleInputChange }
-                                value = { this.state.time }
-                            /><br />
-                        </Label>
-                        <Label htmlFor='location'>Location of Event<br />
-                            <Input
-                                type="text"
-                                placeholder="Location of Event"
-                                className = "form-control"
-                                name = "location"
-                                onChange = { this.handleInputChange }
-                                value = { this.state.location }
-                            /><br />
-                        </Label>
-                        <div className="form-group">
-                            <RegBtn>Add Event</RegBtn>
-                            <RegBtn onClick={ this.handleReset }>Reset Fields</RegBtn>
-                        </div>
-                    </RegBorder>
-                </Form>
-            </RegBase>
+
+                    <EveDiv>
+                        <EveBtn type="submit" className="btn btun-primary">Add Event</EveBtn>
+                        <EveBtn type="button" className="btn btn-warning" onClick={ this.handleReset }>Reset Fields</EveBtn>
+                    </EveDiv>
+                    </EveBorder>
+                </EveForm>
+            </EveBase>
+
         );
     };
 };
