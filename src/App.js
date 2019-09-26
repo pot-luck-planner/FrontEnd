@@ -6,9 +6,9 @@ import PrivateRoute from './utils/PrivateRoute';
 import Events from './components/Events';
 import EventForm from './components/EventForm';
 import SideBar from './components/NavBar/SideBar';
-// import ItemCard from './components/Item/ItemCard';
+import ItemCard from './components/Item/ItemCard';
 import AttendieCard from './components/Attendie/AttendieCard';
-import UserList from './components/UserList';
+// import UserList from './components/UserList';
 import EventUpdate from './components/EventUpdate';
 import Invites from './components/Invites';
 import Dashboard from './components/Dashboard';
@@ -31,6 +31,10 @@ function App() {
 
         <Switch>
           <PrivateRoute
+          path = "/event/addmenu"
+          render = {(props) =>
+          <ItemCard {...props} />} />
+          <PrivateRoute
           path = "/invite-user/:id"
           render={(props) =>
           <AttendieCard {...props} />} />
@@ -43,7 +47,7 @@ function App() {
           render={(props) => 
           <Invites {...props} />} />
           <Route path = "/login" component = {Login} />
-           <PrivateRoute exact path = "/accounts/:username"
+           <PrivateRoute exact path = "/account"
                         render={props => {
                           return <Dashboard {...props} />
                         }} /> 

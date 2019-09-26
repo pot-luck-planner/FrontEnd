@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { addFood } from '../../actions';
 
 // Add items to the list. Food, supplies, drink
 //This is the card / form to fill out
@@ -14,7 +16,7 @@ const ItemBase = styled.div`
 `;
 const ItemForm = styled.form`
     display: flex;
-    width: 40%;
+    width: 90%;
     background-color: #F0F2F2;
     justify-content: center;
     align-content: center;
@@ -65,30 +67,52 @@ const ItemBtn = styled.button`
     }
 `;
 
-function ItemCard() {
+function ItemCard({addFood, ...props}) {
+    const [food, setFood] = useState("");
+
+    const handleInputChange = e => {
+        setFood(e.target.value)
+    };
+
+    const handleFood = e => {
+        let id = props.match.params.id;
+        e.preventDefault();
+        addFood(id, food)
+    }
 
     return(
         <ItemBase>
-            <ItemForm>
+            <ItemForm onSubmit = {handleFood}>
                 <ItemBorder>
                     <ItemLgd>Add Items</ItemLgd>
                         <ItemLabel htmlFor="ItemName">Item Name<br />
                             <ItemInput type='text' id='ItemName' name='ItemName'
-                            placeholder='Add Item'  /><br />
+                            placeholder='Add Food' onChange = {handleInputChange} value = {food.name}  /><br />
                         </ItemLabel>
-                        <ItemLabel htmlFor='Category'>Category<br />
+                        {/* <ItemLabel htmlFor='Category'>Category<br />
                             <ItemInput type='text' id='Category' name='Category' 
                             placeholder='Appetizer, Drinks, Main Dish, Dessert, Party Supply' /><br />
                         </ItemLabel>
                         <ItemLabel htmlFor='Qty'>Quantity<br />
                             <ItemInput type='text' id='Qty' name='Qty'
                             placeholder='How much'  /><br />
-                        </ItemLabel>
+                        </ItemLabel> */}
 
-                        <ItemBtn>Add Item</ItemBtn>
+                        <ItemBtn type = "submit">Add Item</ItemBtn>
                 </ItemBorder>
             </ItemForm>
         </ItemBase>
     );
 }
-export default ItemCard
+
+const mapStateToProps = state => {
+    console.log("State.Food.Name", state)
+
+    return {
+        name: state.food.name
+    }
+}
+export default connect(
+    mapStateToProps,
+    { addFood }
+)(ItemCard)

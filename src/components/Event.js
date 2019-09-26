@@ -35,6 +35,15 @@ const Event = props => {
                     <Card.Description>Hosted by: {props.host_name}</Card.Description>
                 </Card.Content>
             </Card>
+
+            <Link to = {{
+                pathname: `/addmenu`,
+                state: {
+                    name: props.name,
+                }
+            }}>
+                <Button color='yellow'>Add Menus</Button>
+            </Link>
             <Link to = {{
                 
                 pathname: `/updateevent/${props.id}`,
