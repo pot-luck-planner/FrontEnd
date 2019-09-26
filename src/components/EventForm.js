@@ -1,6 +1,7 @@
 import React from 'react';
 import { addEvent } from '../actions';
 import { connect } from 'react-redux';
+
 import styled from 'styled-components';
 
 const EveBase = styled.div`
@@ -78,9 +79,10 @@ class EventForm extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        // console.log("Add Event Props", this.state)
         if (this.state.name.trim() && this.state.date.trim() && this.state.time.trim() && this.state.location.trim()) {
             this.props.onAddEvent(this.state);
-            this.handleReset();
+            
         };
     };
 
@@ -96,6 +98,7 @@ class EventForm extends React.Component {
 
     render() {
         return (
+
             <EveBase>
                 <EveForm onSubmit = {this.handleSubmit}>
                     <EveBorder className="form-group">
@@ -108,28 +111,7 @@ class EventForm extends React.Component {
                             onChange = { this.handleInputChange }
                             value = { this.state.name }
                         />
-                    
-                    {/* <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="Host ID"
-                            className = "form-control"
-                            name = "host_id"
-                            onChange = { this.handleInputChange }
-                            value = { this.state.host_id }
-                        />
-                    </div> */}
-                    {/* <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="Host Name"
-                            className = "form-control"
-                            name = "host_name"
-                            onChange = { this.handleInputChange }
-                            value = { this.state.host_name } */}
-                        {/* />
-                    </div> */}
-                    
+                                  
                         <EveInput
                             type="text"
                             placeholder="Date of Event"
@@ -158,16 +140,7 @@ class EventForm extends React.Component {
                             value = { this.state.location }
                         />
                    
-                    {/* <div className="form-group">
-                        <input
-                            type="text"
-                            placeholder="Event ID"
-                            className = "form-control"
-                            name = "id"
-                            onChange = { this.handleInputChange }
-                            value = { this.state.id }
-                        />
-                    </div> */}
+
                     <EveDiv>
                         <EveBtn type="submit" className="btn btun-primary">Add Event</EveBtn>
                         <EveBtn type="button" className="btn btn-warning" onClick={ this.handleReset }>Reset Fields</EveBtn>
@@ -175,6 +148,7 @@ class EventForm extends React.Component {
                     </EveBorder>
                 </EveForm>
             </EveBase>
+
         );
     };
 };

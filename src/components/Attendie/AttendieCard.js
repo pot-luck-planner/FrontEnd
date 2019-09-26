@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { inviteUser } from '../../actions'
 
 // Add members who would attend the event
 //This is the card / form to fill out
@@ -68,37 +70,46 @@ const MemBtn = styled.button`
     }
 `;
 
-function AttendieCard() {
+function AttendieCard({ inviteUser, isFetching, ...props}) {
+    const [account, setAccount] = useState("");
+    console.log("Attendee Props", props)
+
+    const handleInputChange = e => {
+        setAccount(e.target.value)
+    }
+    
+    const handleInvite = e => {
+        let id = props.match.params.id;
+        e.preventDefault();
+        inviteUser(id, account)
+    }
 
     return(
         <MemBase>
-            <MemForm>
+            <MemForm onSubmit = {handleInvite} >
                 <MemBorder>
-                    <MemLgd>Add Attendies</MemLgd>
-                        <MemLabel htmlFor="firstname">First Name<br />
-                            <MemInput type='text' id='firstname' name='firstname'
-                            placeholder='Enter First Name' size='30' /><br />
+                    <MemLgd>Add Attendee</MemLgd>
+                        <MemLabel htmlFor="id">User ID<br />
+                            <MemInput type='text' id='id' name='id'
+                            placeholder='Enter User ID' size='30'
+                            onChange = {handleInputChange}
+                            value = {account} /><br />
                         </MemLabel>
-                        <MemLabel htmlFor='lastname'>Last Name<br />
-                            <MemInput type='text' id='lastname' name='lastname' size='30'
-                            placeholder='Enter Last Name' /><br />
-                        </MemLabel>
-                        <MemLabel htmlFor='email'>E-Mail<br />
-                            <MemInput type='email' id='email' name='email'
-                            placeholder='Enter E-Mail' size="30" /><br />
-                        </MemLabel>
-                        <MemLabel htmlFor='phone'>Mobile Phone<br />
-                            <MemInput type='tel' id='phone' name='phone'
-                            placeholder='Enter Phone' size="30" /><br />
-                        </MemLabel>
-                        <MemLabel htmlFor='notes'>Notes<br />
-                            <MemTxtArea id='notes' rows='15' cols='32' 
-                            placeholder='Notes' /><br />
-                        </MemLabel>
-                        <MemBtn>Add Item</MemBtn>
+                        <MemBtn type = "submit">Send Invite</MemBtn>
                 </MemBorder>
             </MemForm>
         </MemBase>
     );
 }
-export default AttendieCard
+
+const mapStateToProps = state => {
+
+    return {
+       account_id: state.invites.account_id
+    }
+
+}
+export default connect(
+    mapStateToProps,
+    { inviteUser }
+)(AttendieCard)

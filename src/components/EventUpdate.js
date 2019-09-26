@@ -21,7 +21,7 @@ const EventUpdate = props => {
         let id = props.history.location.state.id
         props.onGetEvent(id)
        console.log("Event", props)
-    },[getEvent])
+    },[props])
 
     const handleChange = e => {
         setEvent({
@@ -36,10 +36,10 @@ const EventUpdate = props => {
         console.log("Update Event", event)
         if (
             
-            event.name != "" &&
-            event.date != "" &&
-            event.time != "" &&
-            event.location != ""
+            event.name !== "" &&
+            event.date !== "" &&
+            event.time !== "" &&
+            event.location !== ""
         ) {
 
             props.onUpdateEvent(id, event);
