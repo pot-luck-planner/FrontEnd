@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const LogBase = styled.div`
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: start;
     width: 100%;
     height: 100%;
@@ -68,13 +68,13 @@ const Login = props => {
             .then(res => {
                 console.log(res)
                 localStorage.setItem('token', res.data.token);
-                props.history.push('/account')
+                props.history.push(`/accounts/${login.username}`)
             })
             .catch(err => console.log(err.response));
     }
 
     return (
-<<<<<<< HEAD
+
         <LogBase>{/*base */}
             <LogForm onSubmit = {logUser}>
                 <LogBorder>
@@ -100,39 +100,7 @@ const Login = props => {
                 </LogBorder>
             </LogForm>
         </LogBase>
-=======
-        <div>
-            
-            <RegBase className='RegBase'>
-                <Form 
-                    classname="RegForm"
-                    onSubmit = {logUser}>
-                <RegBorder>
-                    <RegLgd>Login</RegLgd>
-                    <Label htmlFor='username'>Username<br />
-                        <Input
-                            type="text"
-                            placeholder="Username"
-                            name="username"
-                            value={login.username}
-                            onChange={updateLogin}
-                        />
-                    </Label>
-                    <Label htmlFor="password">Password<br />
-                        <Input
-                            type="password"
-                            placeholder="Password"
-                            name="password"
-                            value={login.password}
-                            onChange = {updateLogin}
-                        />
-                    </Label>
-                    <RegBtn>Log In</RegBtn>
-                </RegBorder>
-                </Form>
-            </RegBase>
-        </div>
->>>>>>> 1152a6d18cd2ed7fdb1748c0bebecd769f2d07db
+
     )
 }
 
