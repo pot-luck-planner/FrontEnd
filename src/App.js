@@ -30,6 +30,7 @@ function App() {
 
 
         <Switch>
+<
           <PrivateRoute
           path = "/event/addmenu"
           render = {(props) =>
@@ -55,7 +56,8 @@ function App() {
           <PrivateRoute path = "/updateevent/:id" render = {(props) => <EventUpdate {...props} /> }  />
           <RegForm />
 
-        </Switch>
+
+      </Switch>        
 
       </div>
 

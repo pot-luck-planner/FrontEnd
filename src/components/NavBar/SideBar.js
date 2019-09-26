@@ -1,10 +1,10 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import styled from 'styled-components';
-import {HomeOutline} from 'styled-icons/typicons';
+import {PermDeviceInformation} from 'styled-icons/material';
 import {LogInCircle} from 'styled-icons/boxicons-regular';
-import {Event} from 'styled-icons/material';
-import {Fastfood} from 'styled-icons/material';
-import {PersonAdd} from 'styled-icons/material';
+import {Dashboard} from 'styled-icons/material';
+
 
 const Spacer = styled.div`
     height: 4.5rem;
@@ -41,20 +41,7 @@ const List = styled.li`
     display:block;
     width:200px;
 `;
-const Anchor = styled.a`
-    position:relative;
-    width:210px;
-    display:table;
-    border-collapse:collapse;
-    border-spacing:0;
-    color:#30BF45;;
-    text-decoration:none;
-    -webkit-transform:translateZ(0) scale(1,1);
-    -webkit-transition:all .14s linear;
-    transition:all .14s linear;
-    font-family: 'HeeBo', sans-serif;
-    text-shadow: 1px 1px 1px  #fff; 
-`;
+
 const NavText = styled.span`
     position:relative;
     display:table-cell;
@@ -62,7 +49,7 @@ const NavText = styled.span`
     width:160px;
     font-family: 'HeeBo', sans-serif;
 `;
-export const HomeIcon = styled(HomeOutline)`
+export const Register = styled(PermDeviceInformation)`
     position:relative;
     display:table-cell;
     width:25px;
@@ -76,27 +63,15 @@ export const LogIn = styled(LogInCircle)`
     text-align:center;
     vertical-align:middle;
 `;
-export const AddEvent = styled(Event)`
+export const DDashboard = styled(Dashboard)`
     position:relative;
     display:table-cell;
     width:25px;
     text-align:center;
     vertical-align:middle;
 `;
-export const AddFood = styled(Fastfood)`
-    position:relative;
-    display:table-cell;
-    width:25px;
-    text-align:center;
-    vertical-align:middle;
-`;
-export const AddPerson = styled(PersonAdd)`
-    position:relative;
-    display:table-cell;
-    width:25px;
-    text-align:center;
-    vertical-align:middle;
-`;
+
+
 
 //Anchor is an a tag. Needs to be Link
 
@@ -108,34 +83,22 @@ function SideBar() {
             <Spacer />
                 <UnOrder>
                     <List> 
-                        <Anchor href='https://google.com'>
-                            <HomeIcon title="home" />
-                            <NavText className='NavText'>Home</NavText>
-                        </Anchor>
+                        <NavLink to='/RegForm' >
+                            <Register title="register" />
+                            <NavText className='NavText'>Register</NavText>
+                        </NavLink>
                     </List>
                     <List>
-                        <Anchor href="/">
+                        <NavLink to='/Login'>
                             <LogIn title='login' />
                             <NavText class="nav-text">Login</NavText>
-                        </Anchor>
+                        </NavLink>
                     </List>
                     <List class="darkerli">
-                        <Anchor href="/">
-                            <AddEvent title='event' />
-                            <NavText class="nav-text">Event</NavText>
-                        </Anchor>
-                    </List>
-                    <List>
-                        <Anchor href="/">
-                            <AddFood title='item' />
-                            <NavText class="nav-text">Items</NavText>
-                        </Anchor>
-                    </List>
-                    <List class="darkerlishadow">
-                        <Anchor href="/">
-                            <AddPerson title='member'/>
-                            <NavText class="nav-text">Attendees</NavText>
-                        </Anchor>
+                        <NavLink to="/Dashboard">
+                            <DDashboard title='dashboard' />
+                            <NavText class="nav-text">Dashboard</NavText>
+                        </NavLink>
                     </List>
                 </UnOrder>
             </NavMain>

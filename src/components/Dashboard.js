@@ -6,6 +6,7 @@ import Invites from './Invites'
 import {RegBase, RegBorder, RegBtn, RegLgd} from './RegForm';
 
 
+
 const Dashboard = () => {
     const [account, setAccount] = useState({firstname:"", lastname:"", username:""});
     
