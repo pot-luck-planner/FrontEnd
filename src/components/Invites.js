@@ -46,7 +46,6 @@ const Invites = ({ getInvites, isFetching, ...props }) => {
 
 const mapStateToProps = state => {
 
-    console.log("Map State", state)
     return {
         invites: state.invites,
         isFetching: state.isFetching,

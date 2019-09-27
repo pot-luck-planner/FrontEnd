@@ -39,11 +39,7 @@ const ItemInput = styled.input`
     margin-bottom: 1rem;
     font-size: 1rem;
 `;
-const ItemTxtArea = styled.textarea`
-    display: inline;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-`;
+
 const ItemBorder = styled.fieldset`
     border-radius: 5px;
     padding: 1rem 3rem;
@@ -68,7 +64,7 @@ const ItemBtn = styled.button`
 `;
 
 function ItemCard({addFood, ...props}) {
-    console.log("ItemCard Props: ", props)
+
     const [food, setFood] = useState("");
 
     const handleInputChange = e => {
@@ -79,6 +75,7 @@ function ItemCard({addFood, ...props}) {
         let id = props.match.params.id;
         e.preventDefault();
         addFood(id, food)
+        window.location.reload();
     }
 
     return(
@@ -90,15 +87,6 @@ function ItemCard({addFood, ...props}) {
                             <ItemInput type='text' id='name' name='name'
                             placeholder='Add Food' onChange = {handleInputChange} value = {food.name}  /><br />
                         </ItemLabel>
-                        {/* <ItemLabel htmlFor='Category'>Category<br />
-                            <ItemInput type='text' id='Category' name='Category' 
-                            placeholder='Appetizer, Drinks, Main Dish, Dessert, Party Supply' /><br />
-                        </ItemLabel>
-                        <ItemLabel htmlFor='Qty'>Quantity<br />
-                            <ItemInput type='text' id='Qty' name='Qty'
-                            placeholder='How much'  /><br />
-                        </ItemLabel> */}
-
                         <ItemBtn type = "submit">Add Item</ItemBtn>
                 </ItemBorder>
             </ItemForm>
@@ -107,7 +95,6 @@ function ItemCard({addFood, ...props}) {
 }
 
 const mapStateToProps = state => {
-    console.log("State.Food.Name", state)
 
     return {
         name: state.food.name

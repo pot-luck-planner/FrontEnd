@@ -4,12 +4,13 @@ import { getEvent, updateEvent } from '../actions';
 import { connect } from 'react-redux';
 
 const EventUpdate = props => {
+    console.log(props)
     
     const [event, setEvent] = useState({
-        name:"",
-        date:"",
-        time:"",
-        location:""
+        name:`${props.history.location.state.name}`,
+        date:`${props.history.location.state.date}`,
+        time:`${props.history.location.state.time}`,
+        location:`${props.history.location.state.location}`
     });
 
 
@@ -38,6 +39,8 @@ const EventUpdate = props => {
             event.location !== ""
         ) {
             props.onUpdateEvent(id, event);
+            props.history.push('/dashboard')
+            
         }
     };
 
@@ -97,7 +100,6 @@ const mapdispatchtoProps = dispatch => {
     };
     
 };
-
 
 export default connect(
     null,
