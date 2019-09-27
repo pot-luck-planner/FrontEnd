@@ -83,13 +83,13 @@ function SideBar() {
             <Spacer />
                 <UnOrder>
                     <List> 
-                        <NavLink to='/RegForm' >
+                        <NavLink to='/register' >
                             <Register title="register" />
                             <NavText className='NavText'>Register</NavText>
                         </NavLink>
                     </List>
                     <List>
-                        <NavLink to='/Login'>
+                        <NavLink to='/login'>
                             <LogIn title='login' />
                             <NavText class="nav-text">Login</NavText>
                         </NavLink>

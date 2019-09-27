@@ -29,11 +29,7 @@ const EveForm = styled.form`
 const EveLgd = styled.legend`
     font-size: 1.5rem;
 `;
-const EveLabel = styled.label`
-    display: inline;
-    font-size: 1rem;
-    padding: 0 .5rem;
-`;
+
 const EveInput = styled.input`
     display: inline;
     border: 1px solid #999999;

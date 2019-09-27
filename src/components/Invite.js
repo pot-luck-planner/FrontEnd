@@ -10,13 +10,14 @@ import { axiosWithAuth } from '../utils/axiosWithAuth'
 const Invite = ({rsvpEvent, ...props}) => {
     const [food, setFood] = useState([]);
     const [newRsvp, setNewRsvp] = useState({rsvp:false, food:""})
-    
+
     const handleRSVP = e => {
         let id = props.invite_id;
-        let rsvp = props.rsvp
         e.preventDefault();
         setNewRsvp({...newRsvp, rsvp: 1 })
         rsvpEvent(id, {...newRsvp, rsvp: 1 })
+        alert(`You have successfully RSVP'd and are bringing ${newRsvp.food} to the pot luck!`)
+        window.location.reload();
     }
 
     const handleFood = async e => {
@@ -25,7 +26,9 @@ const Invite = ({rsvpEvent, ...props}) => {
     }
 
     
-   useEffect(() => getFood(), []);
+    useEffect(() => {
+       getFood();
+     }, []);
     function getFood() {
         const id = props.event_id.toString();
 
@@ -36,7 +39,7 @@ const Invite = ({rsvpEvent, ...props}) => {
        })
        .catch(err => console.log(err.response));
    }
-   console.log("Food: ", food)
+  
     
 
     return (

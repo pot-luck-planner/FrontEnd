@@ -41,13 +41,7 @@ const MemInput = styled.input`
     margin-bottom: 1rem;
     font-size: 1rem;
 `;
-const MemTxtArea = styled.textarea`
-    display: inline;
-    border: 1px solid #999999;
-    border-radius: 7px;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-`;
+
 const MemBorder = styled.fieldset`
     border-radius: 5px;
     padding: 1rem 1rem;
@@ -82,6 +76,8 @@ function AttendieCard({ inviteUser, isFetching, ...props}) {
         let id = props.match.params.id;
         e.preventDefault();
         inviteUser(id, account)
+        alert("User invited!");
+        props.history.push('/dashboard')
     }
 
     return(
