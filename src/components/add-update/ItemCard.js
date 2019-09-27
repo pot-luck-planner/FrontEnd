@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { addFood } from '../../actions';
+import { Link } from 'react-router-dom';
 
 // Add items to the list. Food, supplies, drink
 //This is the card / form to fill out
@@ -88,6 +89,9 @@ function ItemCard({addFood, ...props}) {
                             placeholder='Add Food' onChange = {handleInputChange} value = {food.name}  /><br />
                         </ItemLabel>
                         <ItemBtn type = "submit">Add Item</ItemBtn>
+                        <Link to = {{ pathname: "/dashboard"}}>
+                            <ItemBtn color='red'>Dashboard</ItemBtn>
+                        </Link>
                 </ItemBorder>
             </ItemForm>
         </ItemBase>

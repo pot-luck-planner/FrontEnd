@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Dropdown } from 'semantic-ui-react';
-import { rsvpEvent } from '../actions'
-import { EventDiv } from './Event';
+import { rsvpEvent } from '../../actions'
+import { EventDiv } from '../events/Event';
 import { connect } from 'react-redux';
-import { axiosWithAuth } from '../utils/axiosWithAuth'
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 
 
