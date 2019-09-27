@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getInvites } from '../actions';
+import { getInvites } from '../../actions';
 import Invite from './Invite';
-import { EventListBase } from './Events'
-import { RegLgd } from './RegForm';
+import { EventListBase } from '../events/Events'
+import { RegLgd } from '../add-update/RegForm';
 
 
 

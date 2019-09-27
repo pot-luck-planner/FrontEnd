@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getEvents } from '../actions';
+import { getEvents } from '../../actions';
 import Event from './Event';
 import styled from 'styled-components';
-import { RegLgd } from './RegForm';
+import { RegLgd } from '../add-update/RegForm';
 
 export const EventListBase = styled.div`
 display: flex;

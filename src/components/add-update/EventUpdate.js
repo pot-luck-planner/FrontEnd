@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RegBase, Form, RegLgd, Label, Input, RegBorder, RegBtn} from './RegForm';
-import { getEvent, updateEvent } from '../actions';
+import { getEvent, updateEvent } from '../../actions';
 import { connect } from 'react-redux';
 
 const EventUpdate = props => {

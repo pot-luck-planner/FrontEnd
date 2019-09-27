@@ -1,17 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import RegForm from './components/RegForm'
+import RegForm from './components/add-update/RegForm'
 import Login from './components/Login';
 import PrivateRoute from './utils/PrivateRoute';
-import Events from './components/Events';
-import EventForm from './components/EventForm';
+import Events from './components/events/Events';
+import EventForm from './components/add-update/EventForm';
 import SideBar from './components/NavBar/SideBar';
-import ItemCard from './components/Item/ItemCard';
+import ItemCard from './components/add-update/ItemCard';
 import AttendieCard from './components/Attendie/AttendieCard';
-import EventUpdate from './components/EventUpdate';
-import Invites from './components/Invites';
+import EventUpdate from './components/add-update/EventUpdate';
+import Invites from './components/invites/Invites';
 import Dashboard from './components/Dashboard';
-import Invite from './components/Invite';
+import Invite from './components/invites/Invite';
 import PrivateRoute1 from './utils/PrivateRoute1';
 import './App.css';
 

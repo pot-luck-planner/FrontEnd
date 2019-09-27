@@ -1,5 +1,5 @@
 import React from 'react';
-import { addEvent } from '../actions';
+import { addEvent } from '../../actions';
 import { connect } from 'react-redux';
 
 import styled from 'styled-components';

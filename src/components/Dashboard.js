@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom'
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import Events from './Events';
-import Invites from './Invites'
-import {RegBase, RegBorder, RegBtn, RegLgd} from './RegForm';
+import Events from './events/Events';
+import Invites from './invites/Invites'
+import {RegBase, RegBorder, RegBtn, RegLgd} from './add-update/RegForm';
 
 
 

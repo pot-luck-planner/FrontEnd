@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { deleteEvent } from '../actions'
+import { deleteEvent } from '../../actions'
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
