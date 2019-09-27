@@ -64,6 +64,8 @@ class EventForm extends React.Component {
         location: '',
     };
 
+    
+
     handleInputChange = e => {
         this.setState({
             [e.target.name]: e.target.value
@@ -74,6 +76,7 @@ class EventForm extends React.Component {
         e.preventDefault();
         if (this.state.name.trim() && this.state.date.trim() && this.state.time.trim() && this.state.location.trim()) {
             this.props.onAddEvent(this.state);
+            this.props.history.push('/dashboard')
             
         };
     };
@@ -90,6 +93,7 @@ class EventForm extends React.Component {
 
     render() {
         return (
+ 
 
             <EveBase>
                 <EveForm onSubmit = {this.handleSubmit}>
@@ -134,6 +138,7 @@ class EventForm extends React.Component {
                    
 
                     <EveDiv>
+                        
                         <EveBtn type="submit" className="btn btun-primary">Add Event</EveBtn>
                         <EveBtn type="button" className="btn btn-warning" onClick={ this.handleReset }>Reset Fields</EveBtn>
                     </EveDiv>
