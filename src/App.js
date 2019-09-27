@@ -23,7 +23,7 @@ function App() {
         <h1>Pot Luck Planner</h1>
 
         <SideBar />
-        
+
         <Switch>
 
           <PrivateRoute1
@@ -71,6 +71,7 @@ function App() {
     </Router>
     
   );
-}
+};
+
 
 export default App;
